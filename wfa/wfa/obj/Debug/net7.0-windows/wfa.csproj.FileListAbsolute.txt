@@ -19,4 +19,4 @@ D:\System\Documents\Ynov\B2\C#\wfa\wfa\wfa\obj\Debug\net7.0-windows\wfa.Form.res
 D:\System\Documents\Ynov\B2\C#\wfa\wfa\wfa\obj\Debug\net7.0-windows\wfa.Form.en.resources
 D:\System\Documents\Ynov\B2\C#\wfa\wfa\wfa\obj\Debug\net7.0-windows\en\wfa.resources.dll
 D:\System\Documents\Ynov\B2\C#\wfa\wfa\wfa\obj\Debug\net7.0-windows\wfa.Form2.resources
-D:\System\Documents\Ynov\B2\C#\wfa\wfa\wfa\obj\Debug\net7.0-windows\wfa.UserControl1.resources
+D:\System\Documents\Ynov\B2\C#\wfa\wfa\wfa\obj\Debug\net7.0-windows\wfa.Properties.Resources.resources

@@ -71,10 +71,10 @@ namespace wfa
             }
             
 
-            if (player.Bounds.IntersectsWith(exit.Bounds))
-            {
-                this.Controls.Add(new UserControl1());
-            }
+            //if (player.Bounds.IntersectsWith(exit.Bounds))
+            //{
+            //    this.Controls.Add(new UserControl1());
+            //}
 
             //if (jump == true)
             //{
@@ -276,40 +276,6 @@ namespace wfa
 
         private void MoveInDirection(Direction direction, int distance)
         {
-
-
-                
-
-                //if (direction == Direction.Bottom && HasSideIntersecting(Direction.Bottom, player.Bounds, wall.Bounds))
-                //{
-
-
-                //    Debug.WriteLine(string.Format("{0} {1}", theoreticalBounds.Top, wall.Top));
-
-
-                //}
-                //    if (this.player.Bounds.IntersectsWith(wall.Bounds))
-                //    {
-                //        intersectingSides += "   " + wall.Name + ": ";
-                //        foreach (var direction in Enum.GetValues<Direction>())
-                //        {
-                //            if (HasSideIntersecting(direction, player.Bounds, wall.Bounds))
-                //            {
-                //                intersectingSides += direction + ", ";
-                //            }
-                //        }
-
-                //        intersectingSides += "\n";
-                //    }
-
-
-
-            
-
-            Debug.WriteLine(distance);
-
-
-
             switch (direction)
             {
                 case Direction.Right:
