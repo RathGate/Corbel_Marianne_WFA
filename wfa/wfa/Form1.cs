@@ -69,12 +69,6 @@ namespace wfa
             {
                 MoveInDirection(Direction.Bottom, jumpSpeed);
             }
-            
-
-            //if (player.Bounds.IntersectsWith(exit.Bounds))
-            //{
-            //    this.Controls.Add(new UserControl1());
-            //}
 
             //if (jump == true)
             //{
