@@ -114,7 +114,6 @@
             this.pictureBox78 = new System.Windows.Forms.PictureBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-            this.debug = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -342,7 +341,7 @@
             // 
             this.pictureBox17.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox17.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox17.BackgroundImage")));
-            this.pictureBox17.Location = new System.Drawing.Point(101, 143);
+            this.pictureBox17.Location = new System.Drawing.Point(96, 346);
             this.pictureBox17.Name = "pictureBox17";
             this.pictureBox17.Size = new System.Drawing.Size(32, 32);
             this.pictureBox17.TabIndex = 19;
@@ -1090,17 +1089,6 @@
             this.imageList2.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // debug
-            // 
-            this.debug.BackColor = System.Drawing.Color.Black;
-            this.debug.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.debug.Location = new System.Drawing.Point(280, 35);
-            this.debug.Name = "debug";
-            this.debug.Size = new System.Drawing.Size(200, 59);
-            this.debug.TabIndex = 95;
-            this.debug.Text = "Debug";
-            this.debug.Click += new System.EventHandler(this.label1_Click);
-            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1109,7 +1097,6 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(512, 512);
-            this.Controls.Add(this.debug);
             this.Controls.Add(this.pictureBox78);
             this.Controls.Add(this.pictureBox77);
             this.Controls.Add(this.pictureBox76);
@@ -1369,6 +1356,5 @@
         private PictureBox pictureBox78;
         private ImageList imageList1;
         private ImageList imageList2;
-        private Label debug;
     }
 }

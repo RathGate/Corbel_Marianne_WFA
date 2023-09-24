@@ -12,7 +12,7 @@ namespace wfa
         private bool hasDashed;
         private HashSet<int> berryList;
         private int deaths;
-
+        private int[] startingPosition = { 32, 384};
         bool goLeft, goRight, jump, isGameOver;
         private bool goDown, goUp;
         private bool lookUp, lookDown;
@@ -32,7 +32,7 @@ namespace wfa
         private bool facingLeft = false;
 
         private bool isJumping;
-
+        private int deathCount;
         int horizontalSpeed = 5;
         int verticalSpeed = 3;
 
@@ -54,7 +54,6 @@ namespace wfa
 
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
-            debug.Text = $"ismoving: {isMoving()}";
 
             if (lookUp)
             {
@@ -86,47 +85,48 @@ namespace wfa
                 MoveInDirection(Direction.Top, (int)Math.Ceiling(jumpSpeed));
             }
 
-            if (isJumping)
+            do
             {
-                int risingThreshHold = (int)(jumpDuration * gravity / 2);
+                if (isJumping)
+                {
+                    int risingThreshHold = (int)(jumpDuration * gravity / 2);
 
-                int midPoint = (int)Math.Ceiling(jumpDuration / 2.0);
-                int slowInterval = midPoint - risingThreshHold - 1;
-                Debug.WriteLine("" + risingThreshHold + ", " + midPoint + ", " +slowInterval);
-                if (currentJumpFrame > 0 && currentJumpFrame <= risingThreshHold)
-                {
-                    MoveInDirection(Direction.Top, (int)Math.Ceiling(jumpSpeed));
-                    Debug.WriteLine($"frame {currentJumpFrame}, Speed: " + jumpSpeed);
-                    currentJumpFrame++;
-                    return;
-                }
-                else if (currentJumpFrame == midPoint)
-                {
-                    hasHitApex = true;
-                    currentJumpFrame++;
-                    Debug.WriteLine("Speed: " + 0);
-                    return;
-                }
-                else if (currentJumpFrame > risingThreshHold && currentJumpFrame < midPoint)
-                {
-                    MoveInDirection(Direction.Top, (int)Math.Round(jumpSpeed / (2 * (currentJumpFrame - risingThreshHold))));
-                    Debug.WriteLine("Speed: " + (int)Math.Round(jumpSpeed / (2 * (currentJumpFrame - risingThreshHold))));
-                    currentJumpFrame++;
-                   
-                    return;
-                }
-                else if (currentJumpFrame > midPoint && currentJumpFrame <= midPoint + slowInterval)
-                {
-                    MoveInDirection(Direction.Top, (int)Math.Round(jumpSpeed / (2 * (midPoint + slowInterval + 1 - currentJumpFrame))));
-                    Debug.WriteLine($"{midPoint + slowInterval + 1 - currentJumpFrame} Speed: {(int)Math.Round(jumpSpeed / (2 * (midPoint + slowInterval + 1 - currentJumpFrame)))}");
-                    currentJumpFrame++;
-                    return;
-                }
+                    int midPoint = (int)Math.Ceiling(jumpDuration / 2.0);
+                    int slowInterval = midPoint - risingThreshHold - 1;
+                    if (currentJumpFrame > 0 && currentJumpFrame <= risingThreshHold)
+                    {
+                        MoveInDirection(Direction.Top, (int)Math.Ceiling(jumpSpeed));
+                        currentJumpFrame++;
+                        break;
+                    }
+                    else if (currentJumpFrame == midPoint)
+                    {
+                        hasHitApex = true;
+                        currentJumpFrame++;
+                        break;
 
-                currentJumpFrame = 0;
-                isJumping = false;
+                    }
+                    else if (currentJumpFrame > risingThreshHold && currentJumpFrame < midPoint)
+                    {
+                        MoveInDirection(Direction.Top,
+                            (int)Math.Round(jumpSpeed / (2 * (currentJumpFrame - risingThreshHold))));
+                        currentJumpFrame++;
+                        break;
 
-            }
+                    }
+                    else if (currentJumpFrame > midPoint && currentJumpFrame <= midPoint + slowInterval)
+                    {
+                        MoveInDirection(Direction.Top,
+                            (int)Math.Round(jumpSpeed / (2 * (midPoint + slowInterval + 1 - currentJumpFrame))));
+                        currentJumpFrame++;
+                        break;
+                    }
+
+                    currentJumpFrame = 0;
+                    isJumping = false;
+                    break;
+                }
+            } while (false);
             if (isGrounded())
             {
                 isJumping = false;
@@ -147,12 +147,11 @@ namespace wfa
             //{
             //    jumpSpeed = 1;
             //}
-
             foreach (Control c in this.Controls)
             {
                 if (c is not PictureBox)
                 {
-                    return;
+                    continue;
                 }
 
                 if (player.Bounds.IntersectsWith(c.Bounds) && c.Tag as string == "bewwy")
@@ -163,12 +162,18 @@ namespace wfa
                         c.Visible = false;
                     } 
                 }
+                if (player.Bounds.IntersectsWith(c.Bounds) && c.Tag as string == "spikes")
+                {
+                    Debug.WriteLine("bonjour??");
+                    deathCount++;
+                    player.Location = new Point(startingPosition[0], startingPosition[1]);
+                }
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
