@@ -12,7 +12,7 @@ namespace wfa
         private bool hasDashed;
         private HashSet<int> berryList;
         private int deaths;
-        private int[] startingPosition = { 32, 384};
+        private int[] startingPosition = { 96, 160};
         bool goLeft, goRight, jump, isGameOver;
         private bool goDown, goUp;
         private bool lookUp, lookDown;
@@ -297,6 +297,10 @@ namespace wfa
 
         }
 
+        private void exit_Click(object sender, EventArgs e)
+        {
+            }
+
         public int OverlapPosition(int distance)
         {
             var theoreticalBounds = new Rectangle(player.Left, player.Top + 10, player.Width, player.Height);
@@ -380,6 +384,9 @@ namespace wfa
                         if (HasSideIntersecting(Direction.Right, theoreticalBounds, wall.Bounds))
                         {
                             distance = wall.Left - (player.Left + player.Width);
+                        } else if (theoreticalBounds.Right > 512)
+                        {
+                            distance = 512 - (player.Left + player.Width);
                         }
                     }
 
@@ -393,6 +400,9 @@ namespace wfa
                         if (HasSideIntersecting(Direction.Left, theoreticalBounds, wall.Bounds))
                         {
                             distance = player.Left - (wall.Left + wall.Width);
+                        } else if (theoreticalBounds.Left < 0)
+                        {
+                            distance = player.Left;
                         }
                     }
                     player.Left -= distance;
