@@ -36,3 +36,4 @@ D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\refint\PICO.dll
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.pdb
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.genruntimeconfig.cache
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\ref\PICO.dll
+D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.MainMenu.resources

@@ -8,10 +8,18 @@ namespace PICO
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            var start = new MainMenu();
+            start.FormClosed += WindowClosed;
+            start.Show();
+            Application.Run();
+        }
+
+        static void WindowClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count == 0) Application.Exit();
+            else Application.OpenForms[0].FormClosed += WindowClosed;
         }
     }
 }

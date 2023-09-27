@@ -27,7 +27,7 @@ namespace PICO
         private UserInputs userInputs= new();
 
         // Speed, gravity, velocity ?
-        private int maxRunningSpeed = 5;
+        private int maxRunningSpeed = 7;
         private int maxFallingSpeed = 7;
         private int speedX;
         private int speedY;
@@ -410,7 +410,6 @@ namespace PICO
                     if (CurrentAnimationStep > end || CurrentAnimationStep < start)
                     {
                         CurrentAnimationStep = start;
-
                     }
                 }
                 else
