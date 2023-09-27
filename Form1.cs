@@ -6,11 +6,18 @@ using System.Text.RegularExpressions;
 using Microsoft.VisualBasic.ApplicationServices;
 using PICO.Properties;
 using Image = System.Drawing.Image;
+using Timer = System.Threading.Timer;
 
 namespace PICO
 {
     public partial class Form1 : Form
     {
+        // General
+        private bool isPaused = false;
+        private bool isLocked = false;
+        private bool hasHitEscape = false;
+        private int timerTicks = 0;
+
         private List<PictureBox> walls = new List<PictureBox>();
 
         // Direction and control variables
@@ -54,6 +61,9 @@ namespace PICO
         {
             InitializeComponent();
             this.GetAllControlsWithParameters("wall");
+            pauseTimer.Stop();
+            pausa.Visible = false;
+            pauseBackground.Visible = false;
         }
         public void GetAllControlsWithParameters(string cTag)
         {
@@ -71,8 +81,26 @@ namespace PICO
             }
         }
 
+        private string getElapsedTime()
+        {
+            int interval = gameTimer.Interval;
+            TimeSpan t = TimeSpan.FromMilliseconds((timerTicks * 25));
+            return $"{t.Hours:00}:{t.Minutes:00}:{t.Seconds:00}";
+        }
+
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
+            if (isPaused)
+            {
+                gameTimer.Stop();
+                pauseTimer.Start();
+                pausa.Visible = true;
+                pauseBackground.Visible = true;
+                return;
+            }
+
+            timerTicks++;
+            timeElapsed.Text = getElapsedTime();
             UpdateDirectionValues();
             player.IsGrounded = isAgainstControl(Direction.Bottom, player);
             if (isIdle())
@@ -152,6 +180,12 @@ namespace PICO
                 isWallJumping = true;
                 wallJumpDirection = inputX > 0 ? Direction.Left : Direction.Right;
             }
+
+            if (e.KeyCode == Keys.Escape && !hasHitEscape)
+            {
+                hasHitEscape = true;
+                isPaused = !isPaused;
+            }
         }
 
 
@@ -179,6 +213,10 @@ namespace PICO
             if (e.KeyCode == Keys.Space && hasPressedJumpKey)
             {
                 hasPressedJumpKey = false;
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                hasHitEscape = false;
             }
         }
 
@@ -461,5 +499,27 @@ namespace PICO
             return HasSideIntersectingWithAny(direction, temp); 
         }
 
+        private void pauseTimer_Tick(object sender, EventArgs e)
+        {
+            if (!isPaused)
+            {
+                pauseTimer.Stop();
+                gameTimer.Start();
+                pausa.Visible = false;
+                pauseBackground.Visible = false;
+                return;
+            }
+            Debug.WriteLine("pausa");
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -106,6 +106,10 @@
             this.pictureBox72 = new System.Windows.Forms.PictureBox();
             this.pictureBox73 = new System.Windows.Forms.PictureBox();
             this.player = new PICO.Form1.Player();
+            this.pauseTimer = new System.Windows.Forms.Timer(this.components);
+            this.pauseBackground = new System.Windows.Forms.PictureBox();
+            this.pausa = new System.Windows.Forms.Label();
+            this.timeElapsed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -180,6 +184,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox72)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox73)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pauseBackground)).BeginInit();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -1086,6 +1091,48 @@
             this.player.TabStop = false;
             this.player.Tag = "player";
             // 
+            // pauseTimer
+            // 
+            this.pauseTimer.Enabled = true;
+            this.pauseTimer.Interval = 20;
+            this.pauseTimer.Tick += new System.EventHandler(this.pauseTimer_Tick);
+            // 
+            // pauseBackground
+            // 
+            this.pauseBackground.Location = new System.Drawing.Point(0, 0);
+            this.pauseBackground.Name = "pauseBackground";
+            this.pauseBackground.Size = new System.Drawing.Size(512, 512);
+            this.pauseBackground.TabIndex = 79;
+            this.pauseBackground.TabStop = false;
+            this.pauseBackground.Visible = false;
+            // 
+            // pausa
+            // 
+            this.pausa.AutoSize = true;
+            this.pausa.Font = new System.Drawing.Font("Early GameBoy", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.pausa.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.pausa.Location = new System.Drawing.Point(160, 241);
+            this.pausa.Name = "pausa";
+            this.pausa.Size = new System.Drawing.Size(205, 47);
+            this.pausa.TabIndex = 80;
+            this.pausa.Text = "Pausa";
+            this.pausa.Visible = false;
+            this.pausa.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // timeElapsed
+            // 
+            this.timeElapsed.AutoSize = true;
+            this.timeElapsed.Font = new System.Drawing.Font("Early GameBoy", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.timeElapsed.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.timeElapsed.Location = new System.Drawing.Point(12, 12);
+            this.timeElapsed.Margin = new System.Windows.Forms.Padding(0);
+            this.timeElapsed.Name = "timeElapsed";
+            this.timeElapsed.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.timeElapsed.Size = new System.Drawing.Size(169, 30);
+            this.timeElapsed.TabIndex = 79;
+            this.timeElapsed.Text = "00:00:00";
+            this.timeElapsed.Click += new System.EventHandler(this.label1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1093,6 +1140,9 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = global::PICO.Properties.Resources.bg_1;
             this.ClientSize = new System.Drawing.Size(512, 512);
+            this.Controls.Add(this.timeElapsed);
+            this.Controls.Add(this.pauseBackground);
+            this.Controls.Add(this.pausa);
             this.Controls.Add(this.player);
             this.Controls.Add(this.pictureBox73);
             this.Controls.Add(this.pictureBox72);
@@ -1250,6 +1300,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox72)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox73)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pauseBackground)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1333,5 +1384,9 @@
         private PictureBox pictureBox72;
         private PictureBox pictureBox73;
         private Player player;
+        private System.Windows.Forms.Timer pauseTimer;
+        private PictureBox pauseBackground;
+        private Label pausa;
+        private Label timeElapsed;
     }
 }
