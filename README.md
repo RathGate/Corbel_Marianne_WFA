@@ -1,4 +1,4 @@
-# WFA Pico-8 Celeste
+# ![enter image description here](https://i.ibb.co/kKzM211/PICO-8.png) WFA Pico-8 Celeste
 ![enter image description here](https://i.ibb.co/pyRcfFf/Capture-d-cran-2023-09-25-145145.png)
 
 This project is being realised by Marianne Corbel as part of the "C# Introduction" cours from Ynov Aix. This project aims at providing an approximate Windows Form (WFA) version of [Celeste Pico-8](https://www.lexaloffle.com/bbs/?tid=2145) made by [Maddy Thorson](https://twitter.com/mattthorson) and [Noel Berry](https://twitter.com/noelfb).
