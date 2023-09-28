@@ -18,6 +18,11 @@ namespace PICO
         private bool hasHitEscape = false;
         private int timerTicks = 0;
 
+        // Collectibles
+        private int berries = 0;
+        private int deaths = 0;
+
+
         private List<PictureBox> walls = new List<PictureBox>();
 
         // Direction and control variables
@@ -64,6 +69,10 @@ namespace PICO
             pauseTimer.Stop();
             pausa.Visible = false;
             pauseBackground.Visible = false;
+            berryCount.Visible = false;
+            BerryIcon.Visible = false;
+            deathIcon.Visible = false;
+            deathCount.Visible = false;
         }
         public void GetAllControlsWithParameters(string cTag)
         {
@@ -95,7 +104,13 @@ namespace PICO
                 gameTimer.Stop();
                 pauseTimer.Start();
                 pausa.Visible = true;
+                
+                berryCount.Visible = true;
+                BerryIcon.Visible = true;
+                deathIcon.Visible = true;
+                deathCount.Visible = true;
                 pauseBackground.Visible = true;
+                Debug.WriteLine(berryCount.Visible);
                 return;
             }
 
@@ -144,9 +159,46 @@ namespace PICO
             {
                 MoveInDirection(Direction.Bottom, (int)Math.Ceiling(jumpSpeed));
             }
+
+            if (player.Top < 0)
+            {
+                pauseTimer.Stop();
+                gameTimer.Stop();
+                pausa.Text = "You won !";
+                pausa.Visible = true;
+                berryCount.Visible = true;
+                BerryIcon.Visible = true;
+                deathIcon.Visible = true;
+                deathCount.Visible = true;
+                pauseBackground.Visible = true;
+            }
+
+            foreach (Control c in this.Controls)
+            {
+                if (c is not PictureBox)
+                {
+                    continue;
+                }
+                if (player.Bounds.IntersectsWith(c.Bounds) && c.Tag as string == "berry")
+                {
+                    if (c.Visible)
+                    {
+                        berries++;
+                        berryCount.Text = "1 x";
+                        c.Visible = false;
+                    }
+                }
+                if (player.Bounds.IntersectsWith(c.Bounds) && c.Tag as string == "spikes")
+                {
+                    deaths++;
+                    deathCount.Text = $"{deaths} x";
+                    player.Location = new Point(32, 384);
+                }
+            }
+
         }
 
-        private void KeyIsDown(object sender, KeyEventArgs e)
+            private void KeyIsDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Q)
             {
@@ -506,19 +558,27 @@ namespace PICO
                 gameTimer.Start();
                 pausa.Visible = false;
                 pauseBackground.Visible = false;
+                berryCount.Visible = false;
+                BerryIcon.Visible = false;
+                deathIcon.Visible = false;
+                deathCount.Visible = false;
                 return;
             }
-            Debug.WriteLine("pausa");
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void berryCount_TextChanged(object sender, EventArgs e)
         {
-
+            berryCount.Location = new Point(468 - berryCount.Width, berryCount.Top);
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void deathCount_TextChanged(object sender, EventArgs e)
         {
+            deathCount.Location = new Point(468 - deathCount.Width, deathCount.Top);
+        }
 
+        private void pausa_TextChanged(object sender, EventArgs e)
+        {
+            pausa.Location = new Point(110, pausa.Top);
         }
     }
 }

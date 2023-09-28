@@ -63,6 +63,16 @@ namespace PICO.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap berryIcon {
+            get {
+                object obj = ResourceManager.GetObject("berryIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bg_1 {
             get {
                 object obj = ResourceManager.GetObject("bg_1", resourceCulture);
@@ -246,6 +256,16 @@ namespace PICO.Properties {
         internal static System.Drawing.Bitmap maddy_9 {
             get {
                 object obj = ResourceManager.GetObject("maddy_9", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap skullIcon {
+            get {
+                object obj = ResourceManager.GetObject("skullIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
