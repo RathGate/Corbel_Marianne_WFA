@@ -41,7 +41,7 @@ namespace PICO
             // 
             // logo
             // 
-            this.logo.BackgroundImage = Resources.logo_0;
+            this.logo.BackgroundImage = global::PICO.Properties.Resources.logo_0;
             this.logo.Location = new System.Drawing.Point(145, 141);
             this.logo.Name = "logo";
             this.logo.Size = new System.Drawing.Size(220, 116);
