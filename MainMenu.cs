@@ -5,6 +5,8 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Media;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,9 +28,13 @@ namespace PICO
             Color.FromArgb(32, 43, 80),
         };
 
+        private SoundPlayer launchSound = new SoundPlayer(@"D:\System\Bureau\introductionjpp.wav");
+        private SoundPlayer introduction = new SoundPlayer(@"D:\System\Bureau\title.wav");
+
         public MainMenu()
         {
             InitializeComponent();
+            introduction.PlayLooping();
         }
 
         private void mainMenuTimer_Tick(object sender, EventArgs e)
@@ -99,9 +105,12 @@ namespace PICO
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
+            if (e.KeyCode == Keys.Space && currentAnimationFrame == 0)
             {
                 currentAnimationFrame = 1;
+                introduction.Stop();
+                launchSound.Play();
+
             }
         }
     }

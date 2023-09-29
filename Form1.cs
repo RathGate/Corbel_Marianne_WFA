@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Media;
 using static System.Net.Mime.MediaTypeNames;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -12,6 +13,8 @@ namespace PICO
 {
     public partial class Form1 : Form
     {
+
+        private SoundPlayer backgroundmusic = new SoundPlayer(@"D:\System\Bureau\level.wav");
         // General
         private bool isPaused = false;
         private bool isLocked = false;
@@ -61,10 +64,14 @@ namespace PICO
         private bool hasPressedJumpKey = false;
         private bool hasPressedDashKey = false;
 
+        private string[] menuOptions = new[] { "", "Reset Pico-8" };
+
 
         public Form1()
         {
+
             InitializeComponent();
+            backgroundmusic.PlayLooping();
             this.GetAllControlsWithParameters("wall");
             pauseTimer.Stop();
             pausa.Visible = false;
@@ -320,6 +327,11 @@ namespace PICO
                         if (HasSideIntersecting(Direction.Top, theoreticalBounds, wall.Bounds))
                         {
                             distance = player.Top - (wall.Top + wall.Height);
+                            Debug.WriteLine(currentJumpFrame);
+                            currentJumpFrame = jumpDuration;
+                            isWallJumping = false;
+                            Debug.WriteLine(currentJumpFrame);
+
                         }
                     }
                     player.Top -= distance;
@@ -552,6 +564,7 @@ namespace PICO
 
         private void pauseTimer_Tick(object sender, EventArgs e)
         {
+
             if (!isPaused)
             {
                 pauseTimer.Stop();
@@ -562,7 +575,6 @@ namespace PICO
                 BerryIcon.Visible = false;
                 deathIcon.Visible = false;
                 deathCount.Visible = false;
-                return;
             }
         }
 
