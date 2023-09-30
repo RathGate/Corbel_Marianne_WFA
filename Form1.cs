@@ -49,6 +49,9 @@ namespace PICO
         private bool isWallJumping = false;
         private Direction wallJumpDirection;
 
+        private bool willRestart = false;
+        private int restartCountdown = 0;
+
         private enum Direction
         {
             Top,
@@ -125,6 +128,24 @@ namespace PICO
             timeElapsed.Text = getElapsedTime();
             UpdateDirectionValues();
             player.IsGrounded = isAgainstControl(Direction.Bottom, player);
+
+            if (willRestart)
+            {
+                if (restartCountdown > 0)
+                {
+                    restartCountdown--;
+                    return;
+                }
+                else
+                {
+                    restartCountdown = 0;
+                    willRestart = false;
+                    player.Location = new Point(32, 384);
+                    player.Visible = true;
+                    return;
+                }
+            }
+
             if (isIdle())
             {
                 player.Animate(0, 0, facingRight);
@@ -199,7 +220,9 @@ namespace PICO
                 {
                     deaths++;
                     deathCount.Text = $"{deaths} x";
-                    player.Location = new Point(32, 384);
+                    player.Visible = false;
+                    willRestart = true;
+                    restartCountdown = 20;
                 }
             }
 
