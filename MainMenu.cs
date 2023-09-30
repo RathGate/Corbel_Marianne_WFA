@@ -20,6 +20,7 @@ namespace PICO
         private int currentCoolDownFrame = 0;
         private bool gameWillStart = false;
         private int maxAnimationCooldown = 6;
+        private bool soundUp;
         private readonly Color[] colors = new[]
         {
             Color.FromArgb(96, 96, 96), 
@@ -31,10 +32,14 @@ namespace PICO
         private SoundPlayer launchSound = new SoundPlayer(@"D:\System\Bureau\introductionjpp.wav");
         private SoundPlayer introduction = new SoundPlayer(@"D:\System\Bureau\title.wav");
 
-        public MainMenu()
+        public MainMenu(bool soundUp = true)
         {
+            this.soundUp = soundUp;
             InitializeComponent();
-            introduction.PlayLooping();
+            if (soundUp)
+            {
+                introduction.PlayLooping();
+            }
         }
 
         private void mainMenuTimer_Tick(object sender, EventArgs e)
@@ -109,9 +114,34 @@ namespace PICO
             {
                 currentAnimationFrame = 1;
                 introduction.Stop();
-                launchSound.Play();
-
+                if (soundUp)
+                {
+                    launchSound.Play();
+                }
             }
+        }
+
+        private void sound_Click(object sender, EventArgs e)
+        {
+            soundUp = !soundUp;
+            if (currentAnimationFrame == 0)
+            {
+                updateSound();
+            }
+        }
+
+        private void updateSound()
+        {
+            if (soundUp)
+            {
+                introduction.Play();
+                soundCtrl.Image = Resources.sound_up;
+                return;
+            }
+
+            soundCtrl.Image = Resources.sound_down;
+            Debug.Write(soundCtrl.Image == Resources.sound_down);
+            introduction.Stop();
         }
     }
 }

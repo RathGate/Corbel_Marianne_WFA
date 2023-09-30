@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -106,15 +105,21 @@
             this.pictureBox73 = new System.Windows.Forms.PictureBox();
             this.player = new PICO.Form1.Player();
             this.pauseTimer = new System.Windows.Forms.Timer(this.components);
-            this.pauseBackground = new System.Windows.Forms.PictureBox();
+            this.pausePanel = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pauseOption0 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pauseOption1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.deathCount = new System.Windows.Forms.Label();
+            this.BerryIcon = new System.Windows.Forms.PictureBox();
+            this.deathIcon = new System.Windows.Forms.PictureBox();
+            this.berryCount = new System.Windows.Forms.Label();
             this.pausa = new System.Windows.Forms.Label();
             this.timeElapsed = new System.Windows.Forms.Label();
-            this.BerryIcon = new System.Windows.Forms.PictureBox();
-            this.berryCount = new System.Windows.Forms.Label();
-            this.deathCount = new System.Windows.Forms.Label();
-            this.deathIcon = new System.Windows.Forms.PictureBox();
             this.pictureBox74 = new System.Windows.Forms.PictureBox();
             this.pictureBox75 = new System.Windows.Forms.PictureBox();
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -189,18 +194,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox72)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox73)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pauseBackground)).BeginInit();
+            this.pausePanel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.pauseOption0.SuspendLayout();
+            this.pauseOption1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BerryIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deathIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox74)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox75)).BeginInit();
             this.SuspendLayout();
-            // 
-            // gameTimer
-            // 
-            this.gameTimer.Enabled = true;
-            this.gameTimer.Interval = 16;
-            this.gameTimer.Tick += new System.EventHandler(this.MainGameTimerEvent);
             // 
             // pictureBox1
             // 
@@ -1100,27 +1102,131 @@
             this.pauseTimer.Interval = 20;
             this.pauseTimer.Tick += new System.EventHandler(this.pauseTimer_Tick);
             // 
-            // pauseBackground
+            // pausePanel
             // 
-            this.pauseBackground.Location = new System.Drawing.Point(0, 0);
-            this.pauseBackground.Name = "pauseBackground";
-            this.pauseBackground.Size = new System.Drawing.Size(512, 512);
-            this.pauseBackground.TabIndex = 79;
-            this.pauseBackground.TabStop = false;
-            this.pauseBackground.Visible = false;
+            this.pausePanel.Controls.Add(this.groupBox1);
+            this.pausePanel.Controls.Add(this.deathCount);
+            this.pausePanel.Controls.Add(this.BerryIcon);
+            this.pausePanel.Controls.Add(this.deathIcon);
+            this.pausePanel.Controls.Add(this.berryCount);
+            this.pausePanel.Controls.Add(this.pausa);
+            this.pausePanel.Location = new System.Drawing.Point(0, 0);
+            this.pausePanel.MaximumSize = new System.Drawing.Size(512, 512);
+            this.pausePanel.MinimumSize = new System.Drawing.Size(512, 512);
+            this.pausePanel.Name = "pausePanel";
+            this.pausePanel.Size = new System.Drawing.Size(512, 512);
+            this.pausePanel.TabIndex = 85;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.pauseOption0);
+            this.groupBox1.Controls.Add(this.pauseOption1);
+            this.groupBox1.Location = new System.Drawing.Point(96, 262);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(320, 136);
+            this.groupBox1.TabIndex = 84;
+            this.groupBox1.TabStop = false;
+            // 
+            // pauseOption0
+            // 
+            this.pauseOption0.Controls.Add(this.label1);
+            this.pauseOption0.Location = new System.Drawing.Point(1, 34);
+            this.pauseOption0.Name = "pauseOption0";
+            this.pauseOption0.Size = new System.Drawing.Size(318, 32);
+            this.pauseOption0.TabIndex = 85;
+            this.pauseOption0.Tag = "pauseOption";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Early GameBoy", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(32, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(137, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "continue";
+            // 
+            // pauseOption1
+            // 
+            this.pauseOption1.Controls.Add(this.label3);
+            this.pauseOption1.Location = new System.Drawing.Point(1, 76);
+            this.pauseOption1.Name = "pauseOption1";
+            this.pauseOption1.Size = new System.Drawing.Size(318, 34);
+            this.pauseOption1.TabIndex = 86;
+            this.pauseOption1.Tag = "";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Early GameBoy", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
+            this.label3.Location = new System.Drawing.Point(32, 7);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(241, 20);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "reset cartridge";
+            // 
+            // deathCount
+            // 
+            this.deathCount.AutoSize = true;
+            this.deathCount.Font = new System.Drawing.Font("Early GameBoy", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.deathCount.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.deathCount.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.deathCount.Location = new System.Drawing.Point(401, 55);
+            this.deathCount.Margin = new System.Windows.Forms.Padding(0);
+            this.deathCount.Name = "deathCount";
+            this.deathCount.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.deathCount.Size = new System.Drawing.Size(65, 30);
+            this.deathCount.TabIndex = 82;
+            this.deathCount.Text = "0 x";
+            this.deathCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.deathCount.TextChanged += new System.EventHandler(this.deathCount_TextChanged);
+            // 
+            // BerryIcon
+            // 
+            this.BerryIcon.BackgroundImage = global::PICO.Properties.Resources.berryIcon;
+            this.BerryIcon.Location = new System.Drawing.Point(469, 12);
+            this.BerryIcon.Name = "BerryIcon";
+            this.BerryIcon.Size = new System.Drawing.Size(32, 32);
+            this.BerryIcon.TabIndex = 81;
+            this.BerryIcon.TabStop = false;
+            // 
+            // deathIcon
+            // 
+            this.deathIcon.BackgroundImage = global::PICO.Properties.Resources.skullIcon;
+            this.deathIcon.Location = new System.Drawing.Point(469, 53);
+            this.deathIcon.Name = "deathIcon";
+            this.deathIcon.Size = new System.Drawing.Size(32, 32);
+            this.deathIcon.TabIndex = 83;
+            this.deathIcon.TabStop = false;
+            // 
+            // berryCount
+            // 
+            this.berryCount.AutoSize = true;
+            this.berryCount.Font = new System.Drawing.Font("Early GameBoy", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.berryCount.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.berryCount.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.berryCount.Location = new System.Drawing.Point(401, 12);
+            this.berryCount.Margin = new System.Windows.Forms.Padding(0);
+            this.berryCount.Name = "berryCount";
+            this.berryCount.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.berryCount.Size = new System.Drawing.Size(65, 30);
+            this.berryCount.TabIndex = 20;
+            this.berryCount.Text = "0 x";
+            this.berryCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.berryCount.TextChanged += new System.EventHandler(this.berryCount_TextChanged);
             // 
             // pausa
             // 
             this.pausa.AutoSize = true;
             this.pausa.Font = new System.Drawing.Font("Early GameBoy", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.pausa.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.pausa.Location = new System.Drawing.Point(160, 241);
+            this.pausa.Location = new System.Drawing.Point(161, 157);
             this.pausa.Name = "pausa";
             this.pausa.Size = new System.Drawing.Size(205, 47);
             this.pausa.TabIndex = 80;
             this.pausa.Text = "Pausa";
-            this.pausa.Visible = false;
-            this.pausa.TextChanged += new System.EventHandler(this.pausa_TextChanged);
             // 
             // timeElapsed
             // 
@@ -1134,56 +1240,6 @@
             this.timeElapsed.Size = new System.Drawing.Size(169, 30);
             this.timeElapsed.TabIndex = 79;
             this.timeElapsed.Text = "00:00:00";
-            // 
-            // BerryIcon
-            // 
-            this.BerryIcon.BackgroundImage = global::PICO.Properties.Resources.berryIcon;
-            this.BerryIcon.Location = new System.Drawing.Point(468, 12);
-            this.BerryIcon.Name = "BerryIcon";
-            this.BerryIcon.Size = new System.Drawing.Size(32, 32);
-            this.BerryIcon.TabIndex = 81;
-            this.BerryIcon.TabStop = false;
-            // 
-            // berryCount
-            // 
-            this.berryCount.AutoSize = true;
-            this.berryCount.Font = new System.Drawing.Font("Early GameBoy", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.berryCount.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.berryCount.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.berryCount.Location = new System.Drawing.Point(400, 14);
-            this.berryCount.Margin = new System.Windows.Forms.Padding(0);
-            this.berryCount.Name = "berryCount";
-            this.berryCount.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
-            this.berryCount.Size = new System.Drawing.Size(65, 30);
-            this.berryCount.TabIndex = 20;
-            this.berryCount.Text = "0 x";
-            this.berryCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.berryCount.TextChanged += new System.EventHandler(this.berryCount_TextChanged);
-            // 
-            // deathCount
-            // 
-            this.deathCount.AutoSize = true;
-            this.deathCount.Font = new System.Drawing.Font("Early GameBoy", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.deathCount.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.deathCount.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.deathCount.Location = new System.Drawing.Point(400, 56);
-            this.deathCount.Margin = new System.Windows.Forms.Padding(0);
-            this.deathCount.Name = "deathCount";
-            this.deathCount.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
-            this.deathCount.Size = new System.Drawing.Size(65, 30);
-            this.deathCount.TabIndex = 82;
-            this.deathCount.Text = "0 x";
-            this.deathCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.deathCount.TextChanged += new System.EventHandler(this.deathCount_TextChanged);
-            // 
-            // deathIcon
-            // 
-            this.deathIcon.BackgroundImage = global::PICO.Properties.Resources.skullIcon;
-            this.deathIcon.Location = new System.Drawing.Point(468, 54);
-            this.deathIcon.Name = "deathIcon";
-            this.deathIcon.Size = new System.Drawing.Size(32, 32);
-            this.deathIcon.TabIndex = 83;
-            this.deathIcon.TabStop = false;
             // 
             // pictureBox74
             // 
@@ -1209,6 +1265,12 @@
             this.pictureBox75.TabStop = false;
             this.pictureBox75.Tag = "wall";
             // 
+            // gameTimer
+            // 
+            this.gameTimer.Enabled = true;
+            this.gameTimer.Interval = 16;
+            this.gameTimer.Tick += new System.EventHandler(this.MainGameTimerEvent);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1217,12 +1279,7 @@
             this.BackgroundImage = global::PICO.Properties.Resources.bg_1;
             this.ClientSize = new System.Drawing.Size(512, 512);
             this.Controls.Add(this.timeElapsed);
-            this.Controls.Add(this.deathCount);
-            this.Controls.Add(this.deathIcon);
-            this.Controls.Add(this.berryCount);
-            this.Controls.Add(this.BerryIcon);
-            this.Controls.Add(this.pausa);
-            this.Controls.Add(this.pauseBackground);
+            this.Controls.Add(this.pausePanel);
             this.Controls.Add(this.player);
             this.Controls.Add(this.pictureBox75);
             this.Controls.Add(this.pictureBox74);
@@ -1382,7 +1439,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox72)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox73)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pauseBackground)).EndInit();
+            this.pausePanel.ResumeLayout(false);
+            this.pausePanel.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.pauseOption0.ResumeLayout(false);
+            this.pauseOption0.PerformLayout();
+            this.pauseOption1.ResumeLayout(false);
+            this.pauseOption1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BerryIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deathIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox74)).EndInit();
@@ -1393,8 +1456,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer gameTimer;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
@@ -1479,5 +1540,12 @@
         private PictureBox deathIcon;
         private PictureBox pictureBox74;
         private PictureBox pictureBox75;
+        private GroupBox groupBox1;
+        private Label label1;
+        private System.Windows.Forms.Timer gameTimer;
+        private Panel pausePanel;
+        private Panel pauseOption0;
+        private Panel pauseOption1;
+        private Label label3;
     }
 }

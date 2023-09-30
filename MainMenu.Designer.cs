@@ -36,7 +36,9 @@ namespace PICO
             this.labelCtrls = new System.Windows.Forms.Label();
             this.mainMenuTimer = new System.Windows.Forms.Timer(this.components);
             this.labelPressBtn = new System.Windows.Forms.Label();
+            this.soundCtrl = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.soundCtrl)).BeginInit();
             this.SuspendLayout();
             // 
             // logo
@@ -76,12 +78,23 @@ namespace PICO
             this.labelPressBtn.TabIndex = 2;
             this.labelPressBtn.Text = "Press button";
             // 
+            // soundCtrl
+            // 
+            this.soundCtrl.Image = global::PICO.Properties.Resources.sound_up;
+            this.soundCtrl.Location = new System.Drawing.Point(468, 468);
+            this.soundCtrl.Name = "soundCtrl";
+            this.soundCtrl.Size = new System.Drawing.Size(32, 32);
+            this.soundCtrl.TabIndex = 3;
+            this.soundCtrl.TabStop = false;
+            this.soundCtrl.Click += new System.EventHandler(this.sound_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(512, 512);
+            this.Controls.Add(this.soundCtrl);
             this.Controls.Add(this.labelPressBtn);
             this.Controls.Add(this.labelCtrls);
             this.Controls.Add(this.logo);
@@ -98,6 +111,7 @@ namespace PICO
             this.Text = "PICO-8";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.soundCtrl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,5 +123,7 @@ namespace PICO
         private Label labelCtrls;
         private System.Windows.Forms.Timer mainMenuTimer;
         private Label labelPressBtn;
+        private PictureBox sound;
+        private PictureBox soundCtrl;
     }
 }

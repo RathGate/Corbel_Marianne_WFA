@@ -17,14 +17,46 @@ namespace PICO
         private SoundPlayer backgroundmusic = new SoundPlayer(@"D:\System\Bureau\level.wav");
         // General
         private bool isPaused = false;
+
+        private int _currentPauseOption = 0;
+        private int currentPauseOption
+        {
+            get { return _currentPauseOption;  }
+            set
+            {
+                _currentPauseOption = value < 0 ? 1 : value > 1 ? 0 : value;
+            }
+        }
+        private int pauseChangeCooldown = 0;
+        private List<Panel> pauseOptions;
+
+
         private bool isLocked = false;
         private bool hasHitEscape = false;
         private int timerTicks = 0;
 
         // Collectibles
-        private int berries = 0;
-        private int deaths = 0;
+        private int _berries = 0;
+        private int _deaths = 0;
 
+        public int Berries
+        {
+            get { return _berries; }
+            set
+            {
+                _berries = value;
+                berryCount.Text = value + " x";
+            }
+        }
+        public int Deaths
+        {
+            get { return _deaths; }
+            set
+            {
+                _deaths = value;
+                deathCount.Text = value + " x";
+            }
+        }
 
         private List<PictureBox> walls = new List<PictureBox>();
 
@@ -74,15 +106,10 @@ namespace PICO
         {
 
             InitializeComponent();
+            GetAllControlsWithParameters("wall");
+            pauseOptions = new List<Panel>() { pauseOption0, pauseOption1 };
             backgroundmusic.PlayLooping();
-            this.GetAllControlsWithParameters("wall");
-            pauseTimer.Stop();
-            pausa.Visible = false;
-            pauseBackground.Visible = false;
-            berryCount.Visible = false;
-            BerryIcon.Visible = false;
-            deathIcon.Visible = false;
-            deathCount.Visible = false;
+            HidePauseMenu();
         }
         public void GetAllControlsWithParameters(string cTag)
         {
@@ -100,7 +127,10 @@ namespace PICO
             }
         }
 
-        private string getElapsedTime()
+
+
+
+        private string GetElapsedTime()
         {
             int interval = gameTimer.Interval;
             TimeSpan t = TimeSpan.FromMilliseconds((timerTicks * 25));
@@ -111,21 +141,12 @@ namespace PICO
         {
             if (isPaused)
             {
-                gameTimer.Stop();
-                pauseTimer.Start();
-                pausa.Visible = true;
-                
-                berryCount.Visible = true;
-                BerryIcon.Visible = true;
-                deathIcon.Visible = true;
-                deathCount.Visible = true;
-                pauseBackground.Visible = true;
-                Debug.WriteLine(berryCount.Visible);
+                ShowPauseMenu();
                 return;
             }
 
             timerTicks++;
-            timeElapsed.Text = getElapsedTime();
+            timeElapsed.Text = GetElapsedTime();
             UpdateDirectionValues();
             player.IsGrounded = isAgainstControl(Direction.Bottom, player);
 
@@ -190,15 +211,7 @@ namespace PICO
 
             if (player.Top < 0)
             {
-                pauseTimer.Stop();
-                gameTimer.Stop();
-                pausa.Text = "You won !";
-                pausa.Visible = true;
-                berryCount.Visible = true;
-                BerryIcon.Visible = true;
-                deathIcon.Visible = true;
-                deathCount.Visible = true;
-                pauseBackground.Visible = true;
+                ShowPauseMenu();
             }
 
             foreach (Control c in this.Controls)
@@ -211,15 +224,13 @@ namespace PICO
                 {
                     if (c.Visible)
                     {
-                        berries++;
-                        berryCount.Text = "1 x";
+                        Berries++;
                         c.Visible = false;
                     }
                 }
                 if (player.Bounds.IntersectsWith(c.Bounds) && c.Tag as string == "spikes")
                 {
-                    deaths++;
-                    deathCount.Text = $"{deaths} x";
+                    Deaths++;
                     player.Visible = false;
                     willRestart = true;
                     restartCountdown = 20;
@@ -230,22 +241,22 @@ namespace PICO
 
             private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Q)
+            if (e.KeyCode == Keys.Q || e.KeyCode == Keys.Left)
             {
                 userInputs.Left = true;
             }
 
-            if (e.KeyCode == Keys.D)
+            if (e.KeyCode == Keys.D || e.KeyCode == Keys.Right)
             {
                 userInputs.Right = true;
             }
 
-            if (e.KeyCode == Keys.Z)
+            if (e.KeyCode == Keys.Z || e.KeyCode == Keys.Up)
             {
                 userInputs.Up = true;
             }
 
-            if (e.KeyCode == Keys.S)
+            if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
             {
                 userInputs.Down = true;
             }
@@ -263,6 +274,20 @@ namespace PICO
                 wallJumpDirection = inputX > 0 ? Direction.Left : Direction.Right;
             }
 
+            if (e.KeyCode == Keys.Enter && !hasHitEscape)
+            {
+                hasHitEscape = true;
+                if (currentPauseOption == 1 && isPaused)
+                {
+                    Form newForm = new MainMenu();
+                    newForm.Location = this.Location;
+                    newForm.Show();
+                    this.Close();
+                    return;
+                }
+                isPaused = !isPaused;
+            }
+
             if (e.KeyCode == Keys.Escape && !hasHitEscape)
             {
                 hasHitEscape = true;
@@ -271,24 +296,25 @@ namespace PICO
         }
 
 
+
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Q)
+            if (e.KeyCode == Keys.Q || e.KeyCode == Keys.Left)
             {
                 userInputs.Left = false;
             }
 
-            if (e.KeyCode == Keys.D)
+            if (e.KeyCode == Keys.D || e.KeyCode == Keys.Right)
             {
                 userInputs.Right = false;
             }
 
-            if (e.KeyCode == Keys.Z)
+            if (e.KeyCode == Keys.Z || e.KeyCode == Keys.Up)
             {
                 userInputs.Up = false;
             }
 
-            if (e.KeyCode == Keys.S)
+            if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
             {
                 userInputs.Down = false;
             }
@@ -296,7 +322,7 @@ namespace PICO
             {
                 hasPressedJumpKey = false;
             }
-            if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Escape)
             {
                 hasHitEscape = false;
             }
@@ -587,18 +613,58 @@ namespace PICO
 
         private void pauseTimer_Tick(object sender, EventArgs e)
         {
-
             if (!isPaused)
             {
-                pauseTimer.Stop();
-                gameTimer.Start();
-                pausa.Visible = false;
-                pauseBackground.Visible = false;
-                berryCount.Visible = false;
-                BerryIcon.Visible = false;
-                deathIcon.Visible = false;
-                deathCount.Visible = false;
+                HidePauseMenu();
             }
+            UpdateDirectionValues();
+
+            pauseChangeCooldown = pauseChangeCooldown < 0 ? 0 : pauseChangeCooldown - 1;
+            if (pauseChangeCooldown == 0 && inputY != 0)
+            {
+                if (inputY > 0)
+                {
+                    currentPauseOption++;
+                }
+                else
+                {
+                    currentPauseOption--;
+                }
+
+                pauseChangeCooldown = 4;
+                UpdatePauseOption();
+            }
+        }
+
+        private void UpdatePauseOption()
+        {
+            Debug.WriteLine("entering pause menu");
+            for (int i = 0; i < pauseOptions.Count; i++)
+            {
+                if (i == currentPauseOption)
+                {
+                    Debug.WriteLine(i);
+                    pauseOptions[i].Controls.OfType<Label>().First().ForeColor = Color.White;
+                    continue;
+                }
+                pauseOptions[i].Controls.OfType<Label>().First().ForeColor = Color.FromArgb(96, 96, 96);
+            }
+        }
+
+        private void ShowPauseMenu()
+        {
+            pausePanel.Visible = true;
+            gameTimer.Stop();
+            pauseTimer.Start();
+        }
+
+        private void HidePauseMenu()
+        {
+            pausePanel.Visible = false;
+            pauseTimer.Stop();
+            gameTimer.Start();
+            currentPauseOption = 0;
+            UpdatePauseOption();
         }
 
         private void berryCount_TextChanged(object sender, EventArgs e)
