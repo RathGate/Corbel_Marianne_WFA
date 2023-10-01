@@ -273,6 +273,16 @@ namespace PICO.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap snowball {
+            get {
+                object obj = ResourceManager.GetObject("snowball", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sound_down {
             get {
                 object obj = ResourceManager.GetObject("sound_down", resourceCulture);

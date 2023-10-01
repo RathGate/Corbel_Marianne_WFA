@@ -84,6 +84,10 @@ namespace PICO
         private bool willRestart = false;
         private int restartCountdown = 0;
 
+        private int snowBallSpeed = -8;
+        private bool snowBallHasBeenTriggered = false;
+        private int snowBallCooldown = -1;
+
         private enum Direction
         {
             Top,
@@ -163,6 +167,9 @@ namespace PICO
                     willRestart = false;
                     player.Location = new Point(32, 384);
                     player.Visible = true;
+                    isWallJumping = false;
+                    currentJumpFrame = 0;
+                    snowball.Top = player.Top;
                     return;
                 }
             }
@@ -214,6 +221,48 @@ namespace PICO
                 ShowPauseMenu();
             }
 
+            if (inputX != 0 && snowBallCooldown == -1)
+            {
+                snowBallCooldown = 0;
+            }
+
+            if (snowBallCooldown == 0)
+            {
+                if (!snowBallHasBeenTriggered)
+                {
+                    snowball.Top = player.Top;
+                    snowBallHasBeenTriggered = true;
+                }
+                snowball.Visible = true;
+                snowball.Left += snowBallSpeed;
+                if (snowball.Left + snowball.Width < 0)
+                {
+                    snowBallCooldown = 30;
+                    snowball.Left = 513;
+                    snowball.Visible = false;
+                    snowBallHasBeenTriggered = false;
+                }
+            }
+            else if (snowBallCooldown > 0)
+            {
+                snowBallCooldown--;
+            }
+
+            if (!player.IsGrounded && isAboveSnowball())
+            {
+                currentJumpFrame = 1;
+                isWallJumping = false;
+            } else if (player.Bounds.IntersectsWith(snowball.Bounds))
+            {
+                Deaths++;
+                player.Visible = false;
+                willRestart = true;
+                restartCountdown = 20;
+                snowball.Visible = false;
+                snowBallCooldown = -1;
+                snowball.Left = 513;
+            }
+
             foreach (Control c in this.Controls)
             {
                 if (c is not PictureBox)
@@ -228,12 +277,15 @@ namespace PICO
                         c.Visible = false;
                     }
                 }
-                if (player.Bounds.IntersectsWith(c.Bounds) && c.Tag as string == "spikes")
+                if (player.Bounds.IntersectsWith(c.Bounds) && (c.Tag as string == "spikes"))
                 {
                     Deaths++;
                     player.Visible = false;
                     willRestart = true;
                     restartCountdown = 20;
+                    snowball.Visible = false;
+                    snowBallCooldown = -1;
+                    snowball.Left = 513;
                 }
             }
 
@@ -333,13 +385,15 @@ namespace PICO
 
         private void MoveInDirection(Direction direction, int distance)
         {
+            Rectangle theoreticalBounds;
             switch (direction)
             {
                 case Direction.Right:
+                    theoreticalBounds = new Rectangle(player.Left + distance, player.Top, player.Width,
+                        player.Height);
                     foreach (var wall in walls)
                     {
-                        var theoreticalBounds = new Rectangle(player.Left + distance, player.Top, player.Width,
-                            player.Height);
+                        
                         if (HasSideIntersecting(Direction.Right, theoreticalBounds, wall.Bounds))
                         {
                             distance = wall.Left - (player.Left + player.Width);
@@ -353,10 +407,11 @@ namespace PICO
                     player.Left += distance;
                     break;
                 case Direction.Left:
+                    theoreticalBounds = new Rectangle(player.Left - distance, player.Top, player.Width,
+                        player.Height);
                     foreach (var wall in walls)
                     {
-                        var theoreticalBounds = new Rectangle(player.Left - distance, player.Top, player.Width,
-                            player.Height);
+                        
                         if (HasSideIntersecting(Direction.Left, theoreticalBounds, wall.Bounds))
                         {
                             distance = player.Left - (wall.Left + wall.Width);
@@ -369,17 +424,16 @@ namespace PICO
                     player.Left -= distance;
                     break;
                 case Direction.Top:
+                    theoreticalBounds = new Rectangle(player.Left, player.Top - distance, player.Width,
+                        player.Height);
                     foreach (var wall in walls)
                     {
-                        var theoreticalBounds = new Rectangle(player.Left, player.Top - distance, player.Width,
-                            player.Height);
+                        
                         if (HasSideIntersecting(Direction.Top, theoreticalBounds, wall.Bounds))
                         {
                             distance = player.Top - (wall.Top + wall.Height);
-                            Debug.WriteLine(currentJumpFrame);
                             currentJumpFrame = jumpDuration;
                             isWallJumping = false;
-                            Debug.WriteLine(currentJumpFrame);
 
                         }
                     }
@@ -387,18 +441,20 @@ namespace PICO
                     break;
 
                 case Direction.Bottom:
+                    theoreticalBounds = new Rectangle(player.Left, player.Top + distance, player.Width,
+                        player.Height);
                     foreach (var wall in walls)
                     {
-
-                        var theoreticalBounds = new Rectangle(player.Left, player.Top + distance, player.Width,
-                             player.Height);
                         if (HasSideIntersecting(Direction.Bottom, theoreticalBounds, wall.Bounds))
                         {
                             distance = wall.Top - player.Top - player.Height;
                         }
-
                     }
 
+                    if (HasSideIntersecting(Direction.Bottom, theoreticalBounds, snowball.Bounds))
+                    {
+                        distance = snowball.Top - player.Top - player.Height;
+                    }
                     player.Top += distance;
                     break;
             }
@@ -589,6 +645,13 @@ namespace PICO
 
             currentJumpFrame = 0;
         }
+
+        private bool isAboveSnowball()
+        {
+            Rectangle temp = new Rectangle(player.Left, player.Top + 1, player.Width, player.Height);
+            return (!player.Bounds.IntersectsWith(snowball.Bounds) && temp.IntersectsWith(snowball.Bounds));
+
+        }
         private bool isAgainstControl(Direction direction, PictureBox source)
         {
             Rectangle temp = new Rectangle(player.Location, player.Size);
@@ -638,12 +701,10 @@ namespace PICO
 
         private void UpdatePauseOption()
         {
-            Debug.WriteLine("entering pause menu");
             for (int i = 0; i < pauseOptions.Count; i++)
             {
                 if (i == currentPauseOption)
                 {
-                    Debug.WriteLine(i);
                     pauseOptions[i].Controls.OfType<Label>().First().ForeColor = Color.White;
                     continue;
                 }

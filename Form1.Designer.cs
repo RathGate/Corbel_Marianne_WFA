@@ -120,6 +120,7 @@
             this.pictureBox74 = new System.Windows.Forms.PictureBox();
             this.pictureBox75 = new System.Windows.Forms.PictureBox();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.snowball = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -202,6 +203,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.deathIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox74)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox75)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.snowball)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -1116,6 +1118,7 @@
             this.pausePanel.Name = "pausePanel";
             this.pausePanel.Size = new System.Drawing.Size(512, 512);
             this.pausePanel.TabIndex = 85;
+            this.pausePanel.Visible = false;
             // 
             // groupBox1
             // 
@@ -1271,6 +1274,19 @@
             this.gameTimer.Interval = 16;
             this.gameTimer.Tick += new System.EventHandler(this.MainGameTimerEvent);
             // 
+            // snowball
+            // 
+            this.snowball.BackColor = System.Drawing.Color.Transparent;
+            this.snowball.Image = ((System.Drawing.Image)(resources.GetObject("snowball.Image")));
+            this.snowball.InitialImage = null;
+            this.snowball.Location = new System.Drawing.Point(512, 384);
+            this.snowball.MinimumSize = new System.Drawing.Size(24, 24);
+            this.snowball.Name = "snowball";
+            this.snowball.Size = new System.Drawing.Size(32, 32);
+            this.snowball.TabIndex = 82;
+            this.snowball.TabStop = false;
+            this.snowball.Tag = "snowball";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1278,6 +1294,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = global::PICO.Properties.Resources.bg_1;
             this.ClientSize = new System.Drawing.Size(512, 512);
+            this.Controls.Add(this.snowball);
             this.Controls.Add(this.timeElapsed);
             this.Controls.Add(this.pausePanel);
             this.Controls.Add(this.player);
@@ -1450,6 +1467,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.deathIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox74)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox75)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.snowball)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1547,5 +1565,6 @@
         private Panel pauseOption0;
         private Panel pauseOption1;
         private Label label3;
+        private PictureBox snowball;
     }
 }
