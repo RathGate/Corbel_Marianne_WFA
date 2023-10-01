@@ -65,7 +65,7 @@ namespace PICO
             // 
             this.mainMenuTimer.Enabled = true;
             this.mainMenuTimer.Interval = 16;
-            this.mainMenuTimer.Tick += new System.EventHandler(this.mainMenuTimer_Tick);
+            this.mainMenuTimer.Tick += new System.EventHandler(this.MainMenuTimer_Tick);
             // 
             // labelPressBtn
             // 
@@ -86,7 +86,7 @@ namespace PICO
             this.soundCtrl.Size = new System.Drawing.Size(32, 32);
             this.soundCtrl.TabIndex = 3;
             this.soundCtrl.TabStop = false;
-            this.soundCtrl.Click += new System.EventHandler(this.sound_Click);
+            this.soundCtrl.Click += new System.EventHandler(this.Sound_Click);
             // 
             // MainMenu
             // 

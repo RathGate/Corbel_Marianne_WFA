@@ -19,7 +19,7 @@ namespace PICO
         private int currentAnimationFrame = 0;
         private int currentCoolDownFrame = 0;
         private bool gameWillStart = false;
-        private int maxAnimationCooldown = 6;
+        private const int MaxAnimationCooldown = 6;
         private bool soundUp;
         private readonly Color[] colors = new[]
         {
@@ -29,8 +29,8 @@ namespace PICO
             Color.FromArgb(32, 43, 80),
         };
 
-        private SoundPlayer launchSound = new SoundPlayer(@"D:\System\Bureau\introductionjpp.wav");
-        private SoundPlayer introduction = new SoundPlayer(@"D:\System\Bureau\title.wav");
+        private readonly SoundPlayer launchSound = new(@"D:\System\Bureau\introductionjpp.wav");
+        private readonly SoundPlayer introduction = new (@"D:\System\Bureau\title.wav");
 
         public MainMenu(bool soundUp = true)
         {
@@ -42,12 +42,14 @@ namespace PICO
             }
         }
 
-        private void mainMenuTimer_Tick(object sender, EventArgs e)
+        private void MainMenuTimer_Tick(object sender, EventArgs e)
         {
             if (gameWillStart)
             {
-                Form newForm = new Form1();
-                newForm.Location = this.Location;
+                Form newForm = new Form1
+                {
+                    Location = this.Location
+                };
                 newForm.Show();
                 this.Close();
                 return;
@@ -75,7 +77,7 @@ namespace PICO
                             labelPressBtn.ForeColor = colors[0];
                         }
                         //logo.Image = currentColor == 0 ? Resources.logo_1 : Resources.logo_0;
-                        currentCoolDownFrame = maxAnimationCooldown;
+                        currentCoolDownFrame = MaxAnimationCooldown;
                     }
                     else
                     {
@@ -121,20 +123,20 @@ namespace PICO
             }
         }
 
-        private void sound_Click(object sender, EventArgs e)
+        private void Sound_Click(object sender, EventArgs e)
         {
             soundUp = !soundUp;
             if (currentAnimationFrame == 0)
             {
-                updateSound();
+                UpdateSound();
             }
         }
 
-        private void updateSound()
+        private void UpdateSound()
         {
             if (soundUp)
             {
-                introduction.Play();
+                introduction.PlayLooping();
                 soundCtrl.Image = Resources.sound_up;
                 return;
             }
