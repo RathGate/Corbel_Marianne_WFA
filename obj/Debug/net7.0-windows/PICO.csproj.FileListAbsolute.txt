@@ -39,3 +39,5 @@ D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.TitleMenu.resou
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.BaseLevel.resources
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Level1.resources
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Level2.resources
+D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Level4.resources
+D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Level3.resources

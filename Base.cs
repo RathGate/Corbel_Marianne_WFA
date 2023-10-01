@@ -17,7 +17,7 @@ namespace PICO
     {
         protected bool SoundUp; 
         protected SoundPlayer Bgm = new();
-
+        protected int currentRoom;
         public Base()
         {
             InitializeComponent();
@@ -57,8 +57,49 @@ namespace PICO
             Bgm.Stop();
         }
 
-        protected void OpenNewWindow(Form newWindow)
+        protected void OpenNextWindow(int roomIndex)
         {
+            Form newWindow;
+            switch (roomIndex)
+            {
+                case 1:
+                    newWindow = new Level1();
+                    break;
+                case 2: 
+                    newWindow = new Level2();
+                    break;
+                case 3:
+                    newWindow = new Level3();
+                    break;
+                default:
+                    newWindow = new TitleMenu();
+                    break;
+            }
+            newWindow.Location = this.Location;
+            newWindow.Show();
+            this.Close();
+        }
+        protected void OpenNextWindow(int roomIndex, int ticks, int deathCount, int berryCount)
+        {
+            Form newWindow;
+            switch (roomIndex)
+            {
+                case 1:
+                    newWindow = new Level1(ticks, deathCount, berryCount);
+                    break;
+                case 2:
+                    newWindow = new Level2(ticks, deathCount, berryCount);
+                    break;
+                case 3:
+                    newWindow = new Level3(ticks, deathCount, berryCount);
+                    break;
+                case 4:
+                    newWindow = new Level4(ticks, deathCount, berryCount);
+                    break;
+                default:
+                    newWindow = new TitleMenu();
+                    break;
+            }
             newWindow.Location = this.Location;
             newWindow.Show();
             this.Close();

@@ -104,6 +104,8 @@
             this.pictureBox78 = new System.Windows.Forms.PictureBox();
             this.pictureBox79 = new System.Windows.Forms.PictureBox();
             this.pictureBox80 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.soundCtrl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox75)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox74)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -181,6 +183,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox80)).BeginInit();
             this.SuspendLayout();
             // 
+            // soundCtrl
+            // 
+            this.soundCtrl.Click += new System.EventHandler(this.soundCtrl_Click);
+            // 
+            // player
+            // 
+            this.player.Image = ((System.Drawing.Image)(resources.GetObject("player.Image")));
+            this.player.Location = new System.Drawing.Point(0, 273);
+            this.player.Click += new System.EventHandler(this.player_Click);
+            // 
+            // pauseTimer
+            // 
+            this.pauseTimer.Tick += new System.EventHandler(this.pauseTimer_Tick);
+            // 
+            // mainTimer
+            // 
+            this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
+            // 
             // pictureBox75
             // 
             this.pictureBox75.BackColor = System.Drawing.Color.Transparent;
@@ -192,6 +212,7 @@
             this.pictureBox75.TabIndex = 167;
             this.pictureBox75.TabStop = false;
             this.pictureBox75.Tag = "wall";
+            this.pictureBox75.Click += new System.EventHandler(this.pictureBox75_Click);
             // 
             // pictureBox74
             // 
@@ -204,6 +225,7 @@
             this.pictureBox74.TabIndex = 166;
             this.pictureBox74.TabStop = false;
             this.pictureBox74.Tag = "wall";
+            this.pictureBox74.Click += new System.EventHandler(this.pictureBox74_Click);
             // 
             // pictureBox1
             // 
@@ -216,6 +238,7 @@
             this.pictureBox1.TabIndex = 165;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Tag = "wall";
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox72
             // 
@@ -228,6 +251,7 @@
             this.pictureBox72.TabIndex = 164;
             this.pictureBox72.TabStop = false;
             this.pictureBox72.Tag = "berry";
+            this.pictureBox72.Click += new System.EventHandler(this.pictureBox72_Click);
             // 
             // pictureBox71
             // 
@@ -240,6 +264,7 @@
             this.pictureBox71.TabIndex = 163;
             this.pictureBox71.TabStop = false;
             this.pictureBox71.Tag = "decoration";
+            this.pictureBox71.Click += new System.EventHandler(this.pictureBox71_Click);
             // 
             // pictureBox70
             // 
@@ -252,6 +277,7 @@
             this.pictureBox70.TabIndex = 162;
             this.pictureBox70.TabStop = false;
             this.pictureBox70.Tag = "decoration";
+            this.pictureBox70.Click += new System.EventHandler(this.pictureBox70_Click);
             // 
             // pictureBox69
             // 
@@ -264,6 +290,7 @@
             this.pictureBox69.TabIndex = 161;
             this.pictureBox69.TabStop = false;
             this.pictureBox69.Tag = "decoration";
+            this.pictureBox69.Click += new System.EventHandler(this.pictureBox69_Click);
             // 
             // pictureBox68
             // 
@@ -276,6 +303,7 @@
             this.pictureBox68.TabIndex = 160;
             this.pictureBox68.TabStop = false;
             this.pictureBox68.Tag = "spikes";
+            this.pictureBox68.Click += new System.EventHandler(this.pictureBox68_Click);
             // 
             // pictureBox67
             // 
@@ -288,6 +316,7 @@
             this.pictureBox67.TabIndex = 159;
             this.pictureBox67.TabStop = false;
             this.pictureBox67.Tag = "spikes";
+            this.pictureBox67.Click += new System.EventHandler(this.pictureBox67_Click);
             // 
             // pictureBox65
             // 
@@ -300,6 +329,7 @@
             this.pictureBox65.TabIndex = 158;
             this.pictureBox65.TabStop = false;
             this.pictureBox65.Tag = "wall";
+            this.pictureBox65.Click += new System.EventHandler(this.pictureBox65_Click);
             // 
             // pictureBox66
             // 
@@ -312,6 +342,7 @@
             this.pictureBox66.TabIndex = 157;
             this.pictureBox66.TabStop = false;
             this.pictureBox66.Tag = "wall";
+            this.pictureBox66.Click += new System.EventHandler(this.pictureBox66_Click);
             // 
             // pictureBox64
             // 
@@ -324,6 +355,7 @@
             this.pictureBox64.TabIndex = 156;
             this.pictureBox64.TabStop = false;
             this.pictureBox64.Tag = "wall";
+            this.pictureBox64.Click += new System.EventHandler(this.pictureBox64_Click);
             // 
             // pictureBox63
             // 
@@ -336,6 +368,7 @@
             this.pictureBox63.TabIndex = 155;
             this.pictureBox63.TabStop = false;
             this.pictureBox63.Tag = "wall";
+            this.pictureBox63.Click += new System.EventHandler(this.pictureBox63_Click);
             // 
             // pictureBox62
             // 
@@ -348,6 +381,7 @@
             this.pictureBox62.TabIndex = 154;
             this.pictureBox62.TabStop = false;
             this.pictureBox62.Tag = "wall";
+            this.pictureBox62.Click += new System.EventHandler(this.pictureBox62_Click);
             // 
             // pictureBox61
             // 
@@ -360,6 +394,7 @@
             this.pictureBox61.TabIndex = 153;
             this.pictureBox61.TabStop = false;
             this.pictureBox61.Tag = "wall";
+            this.pictureBox61.Click += new System.EventHandler(this.pictureBox61_Click);
             // 
             // pictureBox59
             // 
@@ -372,6 +407,7 @@
             this.pictureBox59.TabIndex = 152;
             this.pictureBox59.TabStop = false;
             this.pictureBox59.Tag = "wall";
+            this.pictureBox59.Click += new System.EventHandler(this.pictureBox59_Click);
             // 
             // pictureBox60
             // 
@@ -384,6 +420,7 @@
             this.pictureBox60.TabIndex = 151;
             this.pictureBox60.TabStop = false;
             this.pictureBox60.Tag = "wall";
+            this.pictureBox60.Click += new System.EventHandler(this.pictureBox60_Click);
             // 
             // pictureBox58
             // 
@@ -396,6 +433,7 @@
             this.pictureBox58.TabIndex = 150;
             this.pictureBox58.TabStop = false;
             this.pictureBox58.Tag = "wall";
+            this.pictureBox58.Click += new System.EventHandler(this.pictureBox58_Click);
             // 
             // pictureBox57
             // 
@@ -408,6 +446,7 @@
             this.pictureBox57.TabIndex = 149;
             this.pictureBox57.TabStop = false;
             this.pictureBox57.Tag = "wall";
+            this.pictureBox57.Click += new System.EventHandler(this.pictureBox57_Click);
             // 
             // pictureBox55
             // 
@@ -420,6 +459,7 @@
             this.pictureBox55.TabIndex = 148;
             this.pictureBox55.TabStop = false;
             this.pictureBox55.Tag = "wall";
+            this.pictureBox55.Click += new System.EventHandler(this.pictureBox55_Click);
             // 
             // pictureBox56
             // 
@@ -432,6 +472,7 @@
             this.pictureBox56.TabIndex = 147;
             this.pictureBox56.TabStop = false;
             this.pictureBox56.Tag = "wall";
+            this.pictureBox56.Click += new System.EventHandler(this.pictureBox56_Click);
             // 
             // pictureBox54
             // 
@@ -444,6 +485,7 @@
             this.pictureBox54.TabIndex = 146;
             this.pictureBox54.TabStop = false;
             this.pictureBox54.Tag = "wall";
+            this.pictureBox54.Click += new System.EventHandler(this.pictureBox54_Click);
             // 
             // pictureBox53
             // 
@@ -456,6 +498,7 @@
             this.pictureBox53.TabIndex = 145;
             this.pictureBox53.TabStop = false;
             this.pictureBox53.Tag = "wall";
+            this.pictureBox53.Click += new System.EventHandler(this.pictureBox53_Click);
             // 
             // pictureBox49
             // 
@@ -468,6 +511,7 @@
             this.pictureBox49.TabIndex = 144;
             this.pictureBox49.TabStop = false;
             this.pictureBox49.Tag = "wall";
+            this.pictureBox49.Click += new System.EventHandler(this.pictureBox49_Click);
             // 
             // pictureBox52
             // 
@@ -480,6 +524,7 @@
             this.pictureBox52.TabIndex = 143;
             this.pictureBox52.TabStop = false;
             this.pictureBox52.Tag = "wall";
+            this.pictureBox52.Click += new System.EventHandler(this.pictureBox52_Click);
             // 
             // pictureBox51
             // 
@@ -492,6 +537,7 @@
             this.pictureBox51.TabIndex = 142;
             this.pictureBox51.TabStop = false;
             this.pictureBox51.Tag = "wall";
+            this.pictureBox51.Click += new System.EventHandler(this.pictureBox51_Click);
             // 
             // pictureBox50
             // 
@@ -504,6 +550,7 @@
             this.pictureBox50.TabIndex = 141;
             this.pictureBox50.TabStop = false;
             this.pictureBox50.Tag = "wall";
+            this.pictureBox50.Click += new System.EventHandler(this.pictureBox50_Click);
             // 
             // pictureBox48
             // 
@@ -516,6 +563,7 @@
             this.pictureBox48.TabIndex = 140;
             this.pictureBox48.TabStop = false;
             this.pictureBox48.Tag = "wall";
+            this.pictureBox48.Click += new System.EventHandler(this.pictureBox48_Click);
             // 
             // pictureBox47
             // 
@@ -528,6 +576,7 @@
             this.pictureBox47.TabIndex = 139;
             this.pictureBox47.TabStop = false;
             this.pictureBox47.Tag = "wall";
+            this.pictureBox47.Click += new System.EventHandler(this.pictureBox47_Click);
             // 
             // pictureBox46
             // 
@@ -540,6 +589,7 @@
             this.pictureBox46.TabIndex = 138;
             this.pictureBox46.TabStop = false;
             this.pictureBox46.Tag = "wall";
+            this.pictureBox46.Click += new System.EventHandler(this.pictureBox46_Click);
             // 
             // pictureBox44
             // 
@@ -552,6 +602,7 @@
             this.pictureBox44.TabIndex = 137;
             this.pictureBox44.TabStop = false;
             this.pictureBox44.Tag = "wall";
+            this.pictureBox44.Click += new System.EventHandler(this.pictureBox44_Click);
             // 
             // pictureBox45
             // 
@@ -564,6 +615,7 @@
             this.pictureBox45.TabIndex = 136;
             this.pictureBox45.TabStop = false;
             this.pictureBox45.Tag = "wall";
+            this.pictureBox45.Click += new System.EventHandler(this.pictureBox45_Click);
             // 
             // pictureBox43
             // 
@@ -576,6 +628,7 @@
             this.pictureBox43.TabIndex = 135;
             this.pictureBox43.TabStop = false;
             this.pictureBox43.Tag = "wall";
+            this.pictureBox43.Click += new System.EventHandler(this.pictureBox43_Click);
             // 
             // pictureBox42
             // 
@@ -588,6 +641,7 @@
             this.pictureBox42.TabIndex = 134;
             this.pictureBox42.TabStop = false;
             this.pictureBox42.Tag = "wall";
+            this.pictureBox42.Click += new System.EventHandler(this.pictureBox42_Click);
             // 
             // pictureBox39
             // 
@@ -600,6 +654,7 @@
             this.pictureBox39.TabIndex = 133;
             this.pictureBox39.TabStop = false;
             this.pictureBox39.Tag = "wall";
+            this.pictureBox39.Click += new System.EventHandler(this.pictureBox39_Click);
             // 
             // pictureBox32
             // 
@@ -612,6 +667,7 @@
             this.pictureBox32.TabIndex = 132;
             this.pictureBox32.TabStop = false;
             this.pictureBox32.Tag = "wall";
+            this.pictureBox32.Click += new System.EventHandler(this.pictureBox32_Click);
             // 
             // pictureBox41
             // 
@@ -624,6 +680,7 @@
             this.pictureBox41.TabIndex = 131;
             this.pictureBox41.TabStop = false;
             this.pictureBox41.Tag = "wall";
+            this.pictureBox41.Click += new System.EventHandler(this.pictureBox41_Click);
             // 
             // pictureBox40
             // 
@@ -636,6 +693,7 @@
             this.pictureBox40.TabIndex = 130;
             this.pictureBox40.TabStop = false;
             this.pictureBox40.Tag = "wall";
+            this.pictureBox40.Click += new System.EventHandler(this.pictureBox40_Click);
             // 
             // pictureBox38
             // 
@@ -648,6 +706,7 @@
             this.pictureBox38.TabIndex = 129;
             this.pictureBox38.TabStop = false;
             this.pictureBox38.Tag = "wall";
+            this.pictureBox38.Click += new System.EventHandler(this.pictureBox38_Click);
             // 
             // pictureBox37
             // 
@@ -660,6 +719,7 @@
             this.pictureBox37.TabIndex = 128;
             this.pictureBox37.TabStop = false;
             this.pictureBox37.Tag = "wall";
+            this.pictureBox37.Click += new System.EventHandler(this.pictureBox37_Click);
             // 
             // pictureBox36
             // 
@@ -672,6 +732,7 @@
             this.pictureBox36.TabIndex = 127;
             this.pictureBox36.TabStop = false;
             this.pictureBox36.Tag = "wall";
+            this.pictureBox36.Click += new System.EventHandler(this.pictureBox36_Click);
             // 
             // pictureBox35
             // 
@@ -684,6 +745,7 @@
             this.pictureBox35.TabIndex = 126;
             this.pictureBox35.TabStop = false;
             this.pictureBox35.Tag = "wall";
+            this.pictureBox35.Click += new System.EventHandler(this.pictureBox35_Click);
             // 
             // pictureBox2
             // 
@@ -696,6 +758,7 @@
             this.pictureBox2.TabIndex = 125;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Tag = "wall";
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox3
             // 
@@ -708,6 +771,7 @@
             this.pictureBox3.TabIndex = 124;
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Tag = "wall";
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // pictureBox4
             // 
@@ -720,6 +784,7 @@
             this.pictureBox4.TabIndex = 123;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Tag = "wall";
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox5
             // 
@@ -732,6 +797,7 @@
             this.pictureBox5.TabIndex = 122;
             this.pictureBox5.TabStop = false;
             this.pictureBox5.Tag = "wall";
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
             // 
             // pictureBox29
             // 
@@ -744,6 +810,7 @@
             this.pictureBox29.TabIndex = 121;
             this.pictureBox29.TabStop = false;
             this.pictureBox29.Tag = "wall";
+            this.pictureBox29.Click += new System.EventHandler(this.pictureBox29_Click);
             // 
             // pictureBox28
             // 
@@ -756,6 +823,7 @@
             this.pictureBox28.TabIndex = 120;
             this.pictureBox28.TabStop = false;
             this.pictureBox28.Tag = "wall";
+            this.pictureBox28.Click += new System.EventHandler(this.pictureBox28_Click);
             // 
             // pictureBox27
             // 
@@ -768,6 +836,7 @@
             this.pictureBox27.TabIndex = 119;
             this.pictureBox27.TabStop = false;
             this.pictureBox27.Tag = "wall";
+            this.pictureBox27.Click += new System.EventHandler(this.pictureBox27_Click);
             // 
             // pictureBox26
             // 
@@ -780,6 +849,7 @@
             this.pictureBox26.TabIndex = 118;
             this.pictureBox26.TabStop = false;
             this.pictureBox26.Tag = "wall";
+            this.pictureBox26.Click += new System.EventHandler(this.pictureBox26_Click);
             // 
             // pictureBox24
             // 
@@ -792,6 +862,7 @@
             this.pictureBox24.TabIndex = 117;
             this.pictureBox24.TabStop = false;
             this.pictureBox24.Tag = "wall";
+            this.pictureBox24.Click += new System.EventHandler(this.pictureBox24_Click);
             // 
             // pictureBox23
             // 
@@ -804,6 +875,7 @@
             this.pictureBox23.TabIndex = 116;
             this.pictureBox23.TabStop = false;
             this.pictureBox23.Tag = "wall";
+            this.pictureBox23.Click += new System.EventHandler(this.pictureBox23_Click);
             // 
             // pictureBox22
             // 
@@ -816,6 +888,7 @@
             this.pictureBox22.TabIndex = 115;
             this.pictureBox22.TabStop = false;
             this.pictureBox22.Tag = "wall";
+            this.pictureBox22.Click += new System.EventHandler(this.pictureBox22_Click);
             // 
             // pictureBox21
             // 
@@ -828,6 +901,7 @@
             this.pictureBox21.TabIndex = 114;
             this.pictureBox21.TabStop = false;
             this.pictureBox21.Tag = "wall";
+            this.pictureBox21.Click += new System.EventHandler(this.pictureBox21_Click);
             // 
             // pictureBox20
             // 
@@ -840,6 +914,7 @@
             this.pictureBox20.TabIndex = 113;
             this.pictureBox20.TabStop = false;
             this.pictureBox20.Tag = "wall";
+            this.pictureBox20.Click += new System.EventHandler(this.pictureBox20_Click);
             // 
             // pictureBox19
             // 
@@ -852,6 +927,7 @@
             this.pictureBox19.TabIndex = 112;
             this.pictureBox19.TabStop = false;
             this.pictureBox19.Tag = "wall";
+            this.pictureBox19.Click += new System.EventHandler(this.pictureBox19_Click);
             // 
             // pictureBox18
             // 
@@ -864,6 +940,7 @@
             this.pictureBox18.TabIndex = 111;
             this.pictureBox18.TabStop = false;
             this.pictureBox18.Tag = "wall";
+            this.pictureBox18.Click += new System.EventHandler(this.pictureBox18_Click);
             // 
             // pictureBox17
             // 
@@ -876,6 +953,7 @@
             this.pictureBox17.TabIndex = 110;
             this.pictureBox17.TabStop = false;
             this.pictureBox17.Tag = "wall";
+            this.pictureBox17.Click += new System.EventHandler(this.pictureBox17_Click);
             // 
             // pictureBox16
             // 
@@ -888,6 +966,7 @@
             this.pictureBox16.TabIndex = 109;
             this.pictureBox16.TabStop = false;
             this.pictureBox16.Tag = "wall";
+            this.pictureBox16.Click += new System.EventHandler(this.pictureBox16_Click);
             // 
             // pictureBox15
             // 
@@ -900,6 +979,7 @@
             this.pictureBox15.TabIndex = 108;
             this.pictureBox15.TabStop = false;
             this.pictureBox15.Tag = "wall";
+            this.pictureBox15.Click += new System.EventHandler(this.pictureBox15_Click);
             // 
             // pictureBox14
             // 
@@ -912,6 +992,7 @@
             this.pictureBox14.TabIndex = 107;
             this.pictureBox14.TabStop = false;
             this.pictureBox14.Tag = "wall";
+            this.pictureBox14.Click += new System.EventHandler(this.pictureBox14_Click);
             // 
             // pictureBox13
             // 
@@ -924,6 +1005,7 @@
             this.pictureBox13.TabIndex = 106;
             this.pictureBox13.TabStop = false;
             this.pictureBox13.Tag = "wall";
+            this.pictureBox13.Click += new System.EventHandler(this.pictureBox13_Click);
             // 
             // pictureBox12
             // 
@@ -936,6 +1018,7 @@
             this.pictureBox12.TabIndex = 105;
             this.pictureBox12.TabStop = false;
             this.pictureBox12.Tag = "wall";
+            this.pictureBox12.Click += new System.EventHandler(this.pictureBox12_Click);
             // 
             // pictureBox10
             // 
@@ -949,6 +1032,7 @@
             this.pictureBox10.TabStop = false;
             this.pictureBox10.Tag = "breakable";
             this.pictureBox10.Visible = false;
+            this.pictureBox10.Click += new System.EventHandler(this.pictureBox10_Click);
             // 
             // pictureBox11
             // 
@@ -962,6 +1046,7 @@
             this.pictureBox11.TabStop = false;
             this.pictureBox11.Tag = "breakable";
             this.pictureBox11.Visible = false;
+            this.pictureBox11.Click += new System.EventHandler(this.pictureBox11_Click);
             // 
             // pictureBox8
             // 
@@ -975,6 +1060,7 @@
             this.pictureBox8.TabStop = false;
             this.pictureBox8.Tag = "breakable";
             this.pictureBox8.Visible = false;
+            this.pictureBox8.Click += new System.EventHandler(this.pictureBox8_Click);
             // 
             // pictureBox9
             // 
@@ -988,6 +1074,7 @@
             this.pictureBox9.TabStop = false;
             this.pictureBox9.Tag = "breakable";
             this.pictureBox9.Visible = false;
+            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
             // 
             // pictureBox7
             // 
@@ -1000,6 +1087,7 @@
             this.pictureBox7.TabIndex = 100;
             this.pictureBox7.TabStop = false;
             this.pictureBox7.Tag = "wall";
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
             // 
             // pictureBox6
             // 
@@ -1012,6 +1100,7 @@
             this.pictureBox6.TabIndex = 99;
             this.pictureBox6.TabStop = false;
             this.pictureBox6.Tag = "wall";
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             // 
             // pictureBox25
             // 
@@ -1024,6 +1113,7 @@
             this.pictureBox25.TabIndex = 98;
             this.pictureBox25.TabStop = false;
             this.pictureBox25.Tag = "wall";
+            this.pictureBox25.Click += new System.EventHandler(this.pictureBox25_Click);
             // 
             // pictureBox76
             // 
@@ -1036,6 +1126,7 @@
             this.pictureBox76.TabIndex = 97;
             this.pictureBox76.TabStop = false;
             this.pictureBox76.Tag = "wall";
+            this.pictureBox76.Click += new System.EventHandler(this.pictureBox76_Click);
             // 
             // pictureBox77
             // 
@@ -1048,6 +1139,7 @@
             this.pictureBox77.TabIndex = 96;
             this.pictureBox77.TabStop = false;
             this.pictureBox77.Tag = "wall";
+            this.pictureBox77.Click += new System.EventHandler(this.pictureBox77_Click);
             // 
             // pictureBox78
             // 
@@ -1060,6 +1152,7 @@
             this.pictureBox78.TabIndex = 95;
             this.pictureBox78.TabStop = false;
             this.pictureBox78.Tag = "wall";
+            this.pictureBox78.Click += new System.EventHandler(this.pictureBox78_Click);
             // 
             // pictureBox79
             // 
@@ -1072,6 +1165,7 @@
             this.pictureBox79.TabIndex = 94;
             this.pictureBox79.TabStop = false;
             this.pictureBox79.Tag = "wall";
+            this.pictureBox79.Click += new System.EventHandler(this.pictureBox79_Click);
             // 
             // pictureBox80
             // 
@@ -1084,6 +1178,7 @@
             this.pictureBox80.TabIndex = 168;
             this.pictureBox80.TabStop = false;
             this.pictureBox80.Tag = "wall";
+            this.pictureBox80.Click += new System.EventHandler(this.pictureBox80_Click);
             // 
             // Level1
             // 
@@ -1166,8 +1261,10 @@
             this.Controls.Add(this.pictureBox77);
             this.Controls.Add(this.pictureBox78);
             this.Controls.Add(this.pictureBox79);
+            this.Deaths = 10;
             this.Name = "Level1";
             this.Text = "Level1";
+            this.Controls.SetChildIndex(this.player, 0);
             this.Controls.SetChildIndex(this.pictureBox79, 0);
             this.Controls.SetChildIndex(this.pictureBox78, 0);
             this.Controls.SetChildIndex(this.pictureBox77, 0);
@@ -1243,6 +1340,8 @@
             this.Controls.SetChildIndex(this.pictureBox74, 0);
             this.Controls.SetChildIndex(this.pictureBox75, 0);
             this.Controls.SetChildIndex(this.pictureBox80, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.soundCtrl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox75)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox74)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

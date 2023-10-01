@@ -219,7 +219,7 @@ namespace PICO
 
 
 
-            if (inputX != 0 && snowBallCooldown == -1)
+            if (inputX != 0 && snowBallCooldown == -1 && currentRoom != 4)
             {
                 snowBallCooldown = 0;
             }
@@ -272,10 +272,9 @@ namespace PICO
                 snowBallCooldown = -1;
                 snowball.Left = 513;
                 return;
-            } else if (player.Top < 0)
+            } else if (player.Top < 0 && currentRoom != 4)
             {
-                Debug.WriteLine("wut");
-                OpenNewWindow(new Level2(timerTicks, Deaths, Berries));
+                OpenNextWindow(currentRoom + 1, timerTicks, Deaths, Berries);
                 return;
             }
 
@@ -347,11 +346,7 @@ namespace PICO
                 hasHitEscape = true;
                 if (currentPauseOption == 1 && isPaused)
                 {
-                    Form newForm = new TitleMenu();
-                    newForm.Location = this.Location;
-                    newForm.Show();
-                    this.Close();
-                    return;
+                    OpenNextWindow(0);
                 }
                 isPaused = !isPaused;
             }
@@ -450,7 +445,10 @@ namespace PICO
                             distance = player.Top - (wall.Top + wall.Height);
                             currentJumpFrame = jumpDuration;
                             isWallJumping = false;
-
+                        }
+                        else if (theoreticalBounds.Top < 0 && currentRoom == 4)
+                        {
+                            distance = player.Top;
                         }
                     }
                     player.Top -= distance;

@@ -40,7 +40,7 @@ namespace PICO
         {
             if (gameWillStart)
             {
-                OpenNewWindow(new Level1());
+                OpenNextWindow(1);
             }
             if (currentAnimationFrame == 0)
             {
