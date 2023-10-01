@@ -19,6 +19,7 @@ namespace PICO
         {
             InitializeComponent();
             pauseOptions = new List<Panel>() { pauseOption0, pauseOption1 };
+            
             this.Deaths = 0;
             this.Berries = 0;
             this.timerTicks = 0;
