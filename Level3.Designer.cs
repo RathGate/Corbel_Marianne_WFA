@@ -87,6 +87,7 @@
             this.pictureBox59 = new System.Windows.Forms.PictureBox();
             this.pictureBox58 = new System.Windows.Forms.PictureBox();
             this.pictureBox21 = new System.Windows.Forms.PictureBox();
+            this.pictureBox38 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox60)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -145,6 +146,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox59)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox58)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -652,8 +654,8 @@
             // pictureBox52
             // 
             this.pictureBox52.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox52.BackgroundImage = global::PICO.Properties.Resources.ground__2_;
-            this.pictureBox52.Location = new System.Drawing.Point(256, 256);
+            this.pictureBox52.BackgroundImage = global::PICO.Properties.Resources.tile116;
+            this.pictureBox52.Location = new System.Drawing.Point(288, 256);
             this.pictureBox52.MinimumSize = new System.Drawing.Size(32, 32);
             this.pictureBox52.Name = "pictureBox52";
             this.pictureBox52.Size = new System.Drawing.Size(32, 32);
@@ -841,11 +843,24 @@
             this.pictureBox21.TabStop = false;
             this.pictureBox21.Tag = "wall";
             // 
+            // pictureBox38
+            // 
+            this.pictureBox38.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox38.BackgroundImage = global::PICO.Properties.Resources.ground__1_;
+            this.pictureBox38.Location = new System.Drawing.Point(256, 256);
+            this.pictureBox38.MinimumSize = new System.Drawing.Size(32, 32);
+            this.pictureBox38.Name = "pictureBox38";
+            this.pictureBox38.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox38.TabIndex = 295;
+            this.pictureBox38.TabStop = false;
+            this.pictureBox38.Tag = "wall";
+            // 
             // Level3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 512);
+            this.Controls.Add(this.pictureBox38);
             this.Controls.Add(this.pictureBox21);
             this.Controls.Add(this.pictureBox58);
             this.Controls.Add(this.pictureBox59);
@@ -965,6 +980,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox59)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox58)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1029,5 +1045,6 @@
         private PictureBox pictureBox59;
         private PictureBox pictureBox58;
         private PictureBox pictureBox21;
+        private PictureBox pictureBox38;
     }
 }

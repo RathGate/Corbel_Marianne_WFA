@@ -20,6 +20,9 @@ namespace PICO
             InitializeComponent();
             Bgm = new SoundPlayer(@"D:\System\Bureau\level.wav");
             pauseOptions = new List<Panel>() { pauseOption0, pauseOption1 };
+            this.Deaths = 0;
+            this.Berries = 0;
+            this.timerTicks = 0;
             HidePauseMenu();
         }
 
@@ -130,16 +133,6 @@ namespace PICO
             }
         }
 
-
-
-
-        private string GetElapsedTime()
-        {
-            int interval = mainTimer.Interval;
-            TimeSpan t = TimeSpan.FromMilliseconds((timerTicks * 25));
-            return $"{t.Hours:00}:{t.Minutes:00}:{t.Seconds:00}";
-        }
-
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
             if (isPaused)
@@ -149,7 +142,7 @@ namespace PICO
             }
 
             timerTicks++;
-            timeElapsed.Text = GetElapsedTime();
+            timeElapsed.Text = GetElapsedTime(timerTicks);
             UpdateDirectionValues();
             player.IsGrounded = isAgainstControl(Direction.Bottom, player);
 
@@ -283,6 +276,11 @@ namespace PICO
                 if (c is not PictureBox)
                 {
                     continue;
+                }
+
+                if (player.Bounds.IntersectsWith(c.Bounds) && c.Tag as string == "golden" && currentRoom == 4)
+                {
+                    OpenNextWindow(currentRoom + 1, timerTicks, Deaths, Berries);
                 }
                 if (player.Bounds.IntersectsWith(c.Bounds) && c.Tag as string == "berry")
                 {

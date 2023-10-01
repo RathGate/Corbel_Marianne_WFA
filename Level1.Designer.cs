@@ -104,6 +104,7 @@
             this.pictureBox78 = new System.Windows.Forms.PictureBox();
             this.pictureBox79 = new System.Windows.Forms.PictureBox();
             this.pictureBox80 = new System.Windows.Forms.PictureBox();
+            this.pictureBox30 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.soundCtrl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox75)).BeginInit();
@@ -181,6 +182,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox78)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox79)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox80)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
             this.SuspendLayout();
             // 
             // soundCtrl
@@ -190,7 +192,7 @@
             // player
             // 
             this.player.Image = ((System.Drawing.Image)(resources.GetObject("player.Image")));
-            this.player.Location = new System.Drawing.Point(0, 273);
+            this.player.Location = new System.Drawing.Point(0, 448);
             this.player.Click += new System.EventHandler(this.player_Click);
             // 
             // pauseTimer
@@ -270,7 +272,7 @@
             // 
             this.pictureBox70.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox70.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox70.BackgroundImage")));
-            this.pictureBox70.Location = new System.Drawing.Point(384, 96);
+            this.pictureBox70.Location = new System.Drawing.Point(384, 128);
             this.pictureBox70.MinimumSize = new System.Drawing.Size(32, 32);
             this.pictureBox70.Name = "pictureBox70";
             this.pictureBox70.Size = new System.Drawing.Size(32, 32);
@@ -400,7 +402,7 @@
             // 
             this.pictureBox59.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox59.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox59.BackgroundImage")));
-            this.pictureBox59.Location = new System.Drawing.Point(384, 128);
+            this.pictureBox59.Location = new System.Drawing.Point(384, 160);
             this.pictureBox59.MinimumSize = new System.Drawing.Size(32, 32);
             this.pictureBox59.Name = "pictureBox59";
             this.pictureBox59.Size = new System.Drawing.Size(32, 32);
@@ -412,7 +414,7 @@
             // pictureBox60
             // 
             this.pictureBox60.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox60.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox60.BackgroundImage")));
+            this.pictureBox60.BackgroundImage = global::PICO.Properties.Resources.default_1;
             this.pictureBox60.Location = new System.Drawing.Point(416, 128);
             this.pictureBox60.MinimumSize = new System.Drawing.Size(32, 32);
             this.pictureBox60.Name = "pictureBox60";
@@ -425,7 +427,7 @@
             // pictureBox58
             // 
             this.pictureBox58.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox58.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox58.BackgroundImage")));
+            this.pictureBox58.BackgroundImage = global::PICO.Properties.Resources.default_5;
             this.pictureBox58.Location = new System.Drawing.Point(448, 160);
             this.pictureBox58.MinimumSize = new System.Drawing.Size(32, 32);
             this.pictureBox58.Name = "pictureBox58";
@@ -438,7 +440,7 @@
             // pictureBox57
             // 
             this.pictureBox57.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox57.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox57.BackgroundImage")));
+            this.pictureBox57.BackgroundImage = global::PICO.Properties.Resources.default_3;
             this.pictureBox57.Location = new System.Drawing.Point(448, 128);
             this.pictureBox57.MinimumSize = new System.Drawing.Size(32, 32);
             this.pictureBox57.Name = "pictureBox57";
@@ -1180,12 +1182,25 @@
             this.pictureBox80.Tag = "wall";
             this.pictureBox80.Click += new System.EventHandler(this.pictureBox80_Click);
             // 
+            // pictureBox30
+            // 
+            this.pictureBox30.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox30.BackgroundImage = global::PICO.Properties.Resources.default_6;
+            this.pictureBox30.Location = new System.Drawing.Point(416, 160);
+            this.pictureBox30.MinimumSize = new System.Drawing.Size(32, 32);
+            this.pictureBox30.Name = "pictureBox30";
+            this.pictureBox30.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox30.TabIndex = 169;
+            this.pictureBox30.TabStop = false;
+            this.pictureBox30.Tag = "wall";
+            // 
             // Level1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PICO.Properties.Resources.bg_1;
             this.ClientSize = new System.Drawing.Size(512, 512);
+            this.Controls.Add(this.pictureBox30);
             this.Controls.Add(this.pictureBox80);
             this.Controls.Add(this.pictureBox75);
             this.Controls.Add(this.pictureBox74);
@@ -1261,7 +1276,6 @@
             this.Controls.Add(this.pictureBox77);
             this.Controls.Add(this.pictureBox78);
             this.Controls.Add(this.pictureBox79);
-            this.Deaths = 10;
             this.Name = "Level1";
             this.Text = "Level1";
             this.Controls.SetChildIndex(this.player, 0);
@@ -1340,6 +1354,7 @@
             this.Controls.SetChildIndex(this.pictureBox74, 0);
             this.Controls.SetChildIndex(this.pictureBox75, 0);
             this.Controls.SetChildIndex(this.pictureBox80, 0);
+            this.Controls.SetChildIndex(this.pictureBox30, 0);
             ((System.ComponentModel.ISupportInitialize)(this.soundCtrl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox75)).EndInit();
@@ -1417,6 +1432,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox78)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox79)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox80)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1499,5 +1515,6 @@
         private PictureBox pictureBox78;
         private PictureBox pictureBox79;
         private PictureBox pictureBox80;
+        private PictureBox pictureBox30;
     }
 }

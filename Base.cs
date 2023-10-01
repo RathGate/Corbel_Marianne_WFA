@@ -10,6 +10,7 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace PICO
 {
@@ -44,6 +45,14 @@ namespace PICO
 
         }
 
+        protected string GetElapsedTime(int ticks)
+        {
+            int interval = mainTimer.Interval;
+            TimeSpan t = TimeSpan.FromMilliseconds((ticks * 25));
+            return $"{t.Hours:00}:{t.Minutes:00}:{t.Seconds:00}";
+        }
+
+
         protected void UpdateSound(PictureBox soundCtrl)
         {
             if (SoundUp)
@@ -71,6 +80,12 @@ namespace PICO
                 case 3:
                     newWindow = new Level3();
                     break;
+                case 4:
+                    newWindow = new Level4();
+                    break;
+                case 5:
+                    newWindow = new VictoryScreen();
+                    break;
                 default:
                     newWindow = new TitleMenu();
                     break;
@@ -95,6 +110,9 @@ namespace PICO
                     break;
                 case 4:
                     newWindow = new Level4(ticks, deathCount, berryCount);
+                    break;
+                case 5:
+                    newWindow = new VictoryScreen(ticks, deathCount, berryCount);
                     break;
                 default:
                     newWindow = new TitleMenu();
