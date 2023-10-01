@@ -154,7 +154,7 @@
             // player
             // 
             this.player.Image = ((System.Drawing.Image)(resources.GetObject("player.Image")));
-            this.player.Location = new System.Drawing.Point(0, 14);
+            this.player.Location = new System.Drawing.Point(0, 35);
             // 
             // pictureBox1
             // 
@@ -865,6 +865,7 @@
             // Level3
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackgroundImage = global::PICO.Properties.Resources.bg_1;
             this.ClientSize = new System.Drawing.Size(512, 512);
             this.Controls.Add(this.pictureBox38);
             this.Controls.Add(this.pictureBox21);
@@ -925,10 +926,8 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox60);
             this.Controls.Add(this.pictureBox1);
-            this.Deaths = 20;
+            this.Deaths = 25;
             this.Name = "Level3";
-            this.Tag = "wall";
-            this.Text = "Level3";
             this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.Controls.SetChildIndex(this.pictureBox60, 0);
             this.Controls.SetChildIndex(this.pictureBox3, 0);

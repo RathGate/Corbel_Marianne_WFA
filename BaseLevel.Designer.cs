@@ -245,7 +245,7 @@
             this.ClientSize = new System.Drawing.Size(512, 512);
             this.Controls.Add(this.snowball);
             this.Controls.Add(this.player);
-            this.Controls.Add(this.pausePanel);
+            //this.Controls.Add(this.pausePanel);
             this.Controls.Add(this.timeElapsed);
             this.Name = "BaseLevel";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);

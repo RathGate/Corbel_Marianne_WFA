@@ -258,10 +258,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::PICO.Properties.Resources.bg_1;
             this.ClientSize = new System.Drawing.Size(512, 512);
             this.Controls.Add(this.pausePanel);
             this.Name = "VictoryScreen";
-            this.Text = "VictoryScreen";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
             this.pausePanel.ResumeLayout(false);
