@@ -10,7 +10,7 @@ namespace PICO
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var start = new MainMenu();
+            var start = new TitleMenu();
             start.FormClosed += WindowClosed;
             start.Show();
             Application.Run();

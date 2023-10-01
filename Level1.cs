@@ -10,11 +10,15 @@ using System.Windows.Forms;
 
 namespace PICO
 {
-    public partial class Form2 : Form
+    public partial class Level1 : BaseLevel
     {
-        public Form2()
+        public Level1()
         {
             InitializeComponent();
+            player.SetSpawnPoint(new Point(32, 384));
+            GetAllControlsWithParameters("wall");
+            ReorderControls();
+            UpdateSound(soundCtrl);
         }
     }
 }

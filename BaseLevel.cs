@@ -1,27 +1,35 @@
+﻿using PICO.Properties;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
 using System.Media;
-using static System.Net.Mime.MediaTypeNames;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
-using Microsoft.VisualBasic.ApplicationServices;
-using PICO.Properties;
-using Image = System.Drawing.Image;
-using Timer = System.Threading.Timer;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PICO
 {
-    public partial class Form1 : Form
+    public partial class BaseLevel : Base
     {
+        public BaseLevel()
+        {
+            InitializeComponent();
+            Bgm = new SoundPlayer(@"D:\System\Bureau\level.wav");
+            pauseOptions = new List<Panel>() { pauseOption0, pauseOption1 };
+            HidePauseMenu();
+        }
 
-        private SoundPlayer backgroundmusic = new SoundPlayer(@"D:\System\Bureau\level.wav");
         // General
-        private bool isPaused = false;
+        private bool isPaused;
 
         private int _currentPauseOption = 0;
         private int currentPauseOption
         {
-            get { return _currentPauseOption;  }
+            get { return _currentPauseOption; }
             set
             {
                 _currentPauseOption = value < 0 ? 1 : value > 1 ? 0 : value;
@@ -31,9 +39,9 @@ namespace PICO
         private List<Panel> pauseOptions;
 
 
-        private bool isLocked = false;
-        private bool hasHitEscape = false;
-        private int timerTicks = 0;
+        //private bool isLocked = false;
+        private bool hasHitEscape;
+        protected int timerTicks = 0;
 
         // Collectibles
         private int _berries = 0;
@@ -64,25 +72,25 @@ namespace PICO
         private int facingRight;
         private int inputX = 0;
         private int inputY = 0;
-        private UserInputs userInputs= new();
+        private UserInputs userInputs = new();
 
         // Speed, gravity, velocity ?
-        private int maxRunningSpeed = 7;
-        private int maxFallingSpeed = 7;
-        private int speedX;
-        private int speedY;
+        //private int maxRunningSpeed = 7;
+        //private int maxFallingSpeed = 7;
+        //private int speedX;
+        //private int speedY;
 
         // Jump related
-        private int currentJumpFrame = 0;
+        private int currentJumpFrame;
         private int jumpDuration = 25;
         // WallJump related
-        private int currentWJumpFrame = 0;
-        private int dJumpDuration;
+        //private int currentWJumpFrame = 0;
+        //private int dJumpDuration;
         private bool isWallJumping = false;
         private Direction wallJumpDirection;
 
         private bool willRestart = false;
-        private int restartCountdown = 0;
+        private int restartCountdown;
 
         private int snowBallSpeed = -8;
         private bool snowBallHasBeenTriggered = false;
@@ -99,22 +107,13 @@ namespace PICO
         // Temporary
         private float gravity = 0.8f;
         private float jumpSpeed = 7f;
-        private bool hasHitApex = false;
-        private bool hasPressedJumpKey = false;
-        private bool hasPressedDashKey = false;
+        private bool hasHitApex;
+        private bool hasPressedJumpKey;
+        //private bool hasPressedDashKey;
 
-        private string[] menuOptions = new[] { "", "Reset Pico-8" };
+        private string[] menuOptions = { "", "Reset Pico-8" };
 
 
-        public Form1()
-        {
-
-            InitializeComponent();
-            GetAllControlsWithParameters("wall");
-            pauseOptions = new List<Panel>() { pauseOption0, pauseOption1 };
-            backgroundmusic.PlayLooping();
-            HidePauseMenu();
-        }
         public void GetAllControlsWithParameters(string cTag)
         {
             foreach (Control c in this.Controls)
@@ -136,7 +135,7 @@ namespace PICO
 
         private string GetElapsedTime()
         {
-            int interval = gameTimer.Interval;
+            int interval = mainTimer.Interval;
             TimeSpan t = TimeSpan.FromMilliseconds((timerTicks * 25));
             return $"{t.Hours:00}:{t.Minutes:00}:{t.Seconds:00}";
         }
@@ -165,7 +164,7 @@ namespace PICO
                 {
                     restartCountdown = 0;
                     willRestart = false;
-                    player.Location = new Point(32, 384);
+                    player.Location = player.SpawnPoint;
                     player.Visible = true;
                     isWallJumping = false;
                     currentJumpFrame = 0;
@@ -183,10 +182,12 @@ namespace PICO
                 if (inputY == 1)
                 {
                     player.Animate(5, 5, facingRight);
-                } else if (inputY == -1)
+                }
+                else if (inputY == -1)
                 {
                     player.Animate(4, 4, facingRight);
-                } else if (inputX != 0)
+                }
+                else if (inputX != 0)
                 {
                     player.Animate(0, 3, facingRight);
                 }
@@ -204,11 +205,11 @@ namespace PICO
             if (currentJumpFrame != 0)
             {
                 Jump();
-            } 
+            }
             else if (inputX != 0 && !player.IsGrounded &&
                        isAgainstControl(inputX == 1 ? Direction.Right : Direction.Left, player))
             {
-                MoveInDirection(Direction.Bottom, (int)Math.Floor(jumpSpeed/2));
+                MoveInDirection(Direction.Bottom, (int)Math.Floor(jumpSpeed / 2));
                 player.Animate(6, 6, facingRight);
             }
             else
@@ -216,10 +217,7 @@ namespace PICO
                 MoveInDirection(Direction.Bottom, (int)Math.Ceiling(jumpSpeed));
             }
 
-            if (player.Top < 0)
-            {
-                ShowPauseMenu();
-            }
+
 
             if (inputX != 0 && snowBallCooldown == -1)
             {
@@ -252,7 +250,8 @@ namespace PICO
             {
                 currentJumpFrame = 1;
                 isWallJumping = false;
-            } else if (player.Bounds.IntersectsWith(snowball.Bounds))
+            }
+            else if (player.Bounds.IntersectsWith(snowball.Bounds))
             {
                 Deaths++;
                 player.Visible = false;
@@ -261,6 +260,23 @@ namespace PICO
                 snowball.Visible = false;
                 snowBallCooldown = -1;
                 snowball.Left = 513;
+            }
+
+            if (player.Top > 512 - player.Height)
+            {
+                Deaths++;
+                player.Visible = false;
+                willRestart = true;
+                restartCountdown = 20;
+                snowball.Visible = false;
+                snowBallCooldown = -1;
+                snowball.Left = 513;
+                return;
+            } else if (player.Top < 0)
+            {
+                Debug.WriteLine("wut");
+                OpenNewWindow(new Level2(timerTicks, Deaths, Berries));
+                return;
             }
 
             foreach (Control c in this.Controls)
@@ -291,7 +307,7 @@ namespace PICO
 
         }
 
-            private void KeyIsDown(object sender, KeyEventArgs e)
+        private void KeyIsDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Q || e.KeyCode == Keys.Left)
             {
@@ -331,7 +347,7 @@ namespace PICO
                 hasHitEscape = true;
                 if (currentPauseOption == 1 && isPaused)
                 {
-                    Form newForm = new MainMenu();
+                    Form newForm = new TitleMenu();
                     newForm.Location = this.Location;
                     newForm.Show();
                     this.Close();
@@ -393,7 +409,7 @@ namespace PICO
                         player.Height);
                     foreach (var wall in walls)
                     {
-                        
+
                         if (HasSideIntersecting(Direction.Right, theoreticalBounds, wall.Bounds))
                         {
                             distance = wall.Left - (player.Left + player.Width);
@@ -411,7 +427,7 @@ namespace PICO
                         player.Height);
                     foreach (var wall in walls)
                     {
-                        
+
                         if (HasSideIntersecting(Direction.Left, theoreticalBounds, wall.Bounds))
                         {
                             distance = player.Left - (wall.Left + wall.Width);
@@ -428,7 +444,7 @@ namespace PICO
                         player.Height);
                     foreach (var wall in walls)
                     {
-                        
+
                         if (HasSideIntersecting(Direction.Top, theoreticalBounds, wall.Bounds))
                         {
                             distance = player.Top - (wall.Top + wall.Height);
@@ -490,7 +506,8 @@ namespace PICO
             return source.Bottom >= target.Top - 1 && source.Bottom <= target.Bottom;
         }
 
-        private bool HasSideIntersectingWithAny(Direction direction, Rectangle source, string tag="wall"){
+        private bool HasSideIntersectingWithAny(Direction direction, Rectangle source, string tag = "wall")
+        {
             foreach (Control c in Controls)
             {
                 if (c is not PictureBox || c.Tag as string != tag)
@@ -500,7 +517,7 @@ namespace PICO
 
                 if (HasSideIntersecting(direction, source, c.Bounds))
                 {
-                    
+
                     return true;
                 }
             }
@@ -526,7 +543,7 @@ namespace PICO
 
         public class Player : PictureBox
         {
-            protected Point DefaultLocation, SpawnPoint;
+            public Point DefaultLocation, SpawnPoint;
             public bool IsLocked = true;
 
             protected int WalkingAnimationFrameRate = 4;
@@ -553,6 +570,12 @@ namespace PICO
 
                 Name = "player";
                 Tag = "player";
+            }
+
+            public void SetSpawnPoint(Point Point)
+            {
+                Location = Point;
+                SpawnPoint = Point;
             }
 
             public void SwitchAnimation(string resourceName)
@@ -585,7 +608,7 @@ namespace PICO
                 {
                     CurrentAnimationStep = start;
                 }
-                
+
                 SwitchAnimation($"maddy_{CurrentAnimationStep + (lookingLeft * 7)}");
             }
         };
@@ -621,7 +644,6 @@ namespace PICO
                 {
                     MoveInDirection(inputX == -1 ? Direction.Left : Direction.Right, 5);
                 }
-                hasHitApex = true;
                 currentJumpFrame++;
                 isWallJumping = false;
                 return;
@@ -656,22 +678,22 @@ namespace PICO
         {
             Rectangle temp = new Rectangle(player.Location, player.Size);
             switch (direction)
-                {
-                    case Direction.Top:
-                        temp.Y -= 1;
-                        break;
-                    case Direction.Left:
-                        temp.X -= 1;
-                        break;
-                    case Direction.Right:
-                        temp.X += 1;
-                        break;
-                    default:
-                        temp.Y += 1;
+            {
+                case Direction.Top:
+                    temp.Y -= 1;
                     break;
-                }
+                case Direction.Left:
+                    temp.X -= 1;
+                    break;
+                case Direction.Right:
+                    temp.X += 1;
+                    break;
+                default:
+                    temp.Y += 1;
+                    break;
+            }
 
-            return HasSideIntersectingWithAny(direction, temp); 
+            return HasSideIntersectingWithAny(direction, temp);
         }
 
         private void pauseTimer_Tick(object sender, EventArgs e)
@@ -715,7 +737,7 @@ namespace PICO
         private void ShowPauseMenu()
         {
             pausePanel.Visible = true;
-            gameTimer.Stop();
+            mainTimer.Stop();
             pauseTimer.Start();
         }
 
@@ -723,7 +745,7 @@ namespace PICO
         {
             pausePanel.Visible = false;
             pauseTimer.Stop();
-            gameTimer.Start();
+            mainTimer.Start();
             currentPauseOption = 0;
             UpdatePauseOption();
         }
@@ -741,6 +763,17 @@ namespace PICO
         private void pausa_TextChanged(object sender, EventArgs e)
         {
             pausa.Location = new Point(110, pausa.Top);
+        }
+
+        protected void ReorderControls()
+        {
+            foreach (Control c in Controls)
+            {
+                if (c == player || c == pausePanel || c == snowball || c == timeElapsed)
+                {
+                    c.BringToFront();
+                }
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PICO.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,53 +7,40 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Media;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PICO.Properties;
 
 namespace PICO
 {
-    public partial class MainMenu : Form
+    public partial class TitleMenu : Base
     {
-        private int currentAnimationFrame = 0;
-        private int currentCoolDownFrame = 0;
-        private bool gameWillStart = false;
+        private readonly SoundPlayer launchSound = new(@"D:\System\Bureau\introductionjpp.wav");
+
+        public TitleMenu()
+        {
+            Bgm = new(@"D:\System\Bureau\title.wav");
+            InitializeComponent();
+            UpdateSound(soundCtrl);
+        }
+
+        private int currentAnimationFrame;
+        private int currentCoolDownFrame;
+        private bool gameWillStart;
         private const int MaxAnimationCooldown = 6;
-        private bool soundUp;
         private readonly Color[] colors = new[]
         {
-            Color.FromArgb(96, 96, 96), 
+            Color.FromArgb(96, 96, 96),
             Color.FromArgb(255, 255, 255),
             Color.FromArgb(126, 37, 84),
             Color.FromArgb(32, 43, 80),
         };
 
-        private readonly SoundPlayer launchSound = new(@"D:\System\Bureau\introductionjpp.wav");
-        private readonly SoundPlayer introduction = new (@"D:\System\Bureau\title.wav");
-
-        public MainMenu(bool soundUp = true)
-        {
-            this.soundUp = soundUp;
-            InitializeComponent();
-            if (soundUp)
-            {
-                introduction.PlayLooping();
-            }
-        }
-
-        private void MainMenuTimer_Tick(object sender, EventArgs e)
+        private new void MainTimerEvent(object sender, EventArgs e)
         {
             if (gameWillStart)
             {
-                Form newForm = new Form1
-                {
-                    Location = this.Location
-                };
-                newForm.Show();
-                this.Close();
-                return;
+                OpenNewWindow(new Level1());
             }
             if (currentAnimationFrame == 0)
             {
@@ -60,7 +48,7 @@ namespace PICO
             }
             if (currentAnimationFrame > 0 && currentAnimationFrame <= 72)
             {
-                
+
                 if (currentCoolDownFrame == 0)
                 {
                     if (currentAnimationFrame <= 60)
@@ -101,7 +89,7 @@ namespace PICO
                 {
                     currentCoolDownFrame--;
                 }
-                
+
             }
             currentAnimationFrame++;
             if (currentAnimationFrame >= 76)
@@ -110,14 +98,14 @@ namespace PICO
             }
         }
 
-        private void OnKeyDown(object sender, KeyEventArgs e)
+        private new void OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space && currentAnimationFrame == 0)
             {
                 currentAnimationFrame = 1;
-                introduction.Stop();
-                if (soundUp)
+                if (SoundUp)
                 {
+                    Bgm.Stop();
                     launchSound.Play();
                 }
             }
@@ -125,25 +113,11 @@ namespace PICO
 
         private void Sound_Click(object sender, EventArgs e)
         {
-            soundUp = !soundUp;
+            SoundUp = !SoundUp;
             if (currentAnimationFrame == 0)
             {
-                UpdateSound();
+                UpdateSound(soundCtrl);
             }
-        }
-
-        private void UpdateSound()
-        {
-            if (soundUp)
-            {
-                introduction.PlayLooping();
-                soundCtrl.Image = Resources.sound_up;
-                return;
-            }
-
-            soundCtrl.Image = Resources.sound_down;
-            Debug.Write(soundCtrl.Image == Resources.sound_down);
-            introduction.Stop();
         }
     }
 }
