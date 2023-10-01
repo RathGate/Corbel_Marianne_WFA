@@ -1241,7 +1241,6 @@
             this.Controls.Add(this.pictureBox77);
             this.Controls.Add(this.pictureBox78);
             this.Controls.Add(this.pictureBox79);
-            this.Deaths = 14;
             this.Name = "Level1";
             this.Controls.SetChildIndex(this.player, 0);
             this.Controls.SetChildIndex(this.pictureBox79, 0);

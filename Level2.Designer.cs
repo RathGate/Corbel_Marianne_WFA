@@ -1020,7 +1020,6 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::PICO.Properties.Resources.bg_1;
-            this.Berries = 1;
             this.ClientSize = new System.Drawing.Size(512, 512);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox6);
@@ -1092,7 +1091,6 @@
             this.Controls.Add(this.pictureBox61);
             this.Controls.Add(this.pictureBox44);
             this.Controls.Add(this.pictureBox12);
-            this.Deaths = 3;
             this.Name = "Level2";
             this.Controls.SetChildIndex(this.pictureBox12, 0);
             this.Controls.SetChildIndex(this.pictureBox44, 0);
