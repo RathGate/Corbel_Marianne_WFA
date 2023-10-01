@@ -1,3 +1,4 @@
+
 # ![enter image description here](https://i.ibb.co/kKzM211/PICO-8.png) WFA Pico-8 Celeste
 ![enter image description here](https://i.ibb.co/pyRcfFf/Capture-d-cran-2023-09-25-145145.png)
 
@@ -64,11 +65,16 @@ As it is, the program **has not been compiled**. If you want to use it, you'll e
 ![enter image description here](https://i.ibb.co/9VXBbJM/Capture-d-cran-2023-09-27-150317.png)
 ![enter image description here](https://i.ibb.co/tPJbVCk/Capture-d-cran-2023-09-28-090836.png)
 
-## What's next ? 
-- As the base levels are not doable without a dash, I need to either implement it or change the structure of the levels
-- Implement at least three to four screens before winning !
-- Clean-up the code
-- Put options in the menu (close menu, reset Pico-8)
-- Winning screen and possibility to restart the game when finished
-- Snow balls as moving enemies to kill the player 
-- Animations
+***Thursday, Sept. 28***
+- First attempts of background music, realised having music and sound effects wouldn't be possible without big changes and external libraires, will stick to bgm only.
+- Fixed bugs.
+
+***Saturday, Sept. 30***
+- Fixed delay before some animations (respawn, ...).
+- Added details and options to pause menu.
+- Added moving enemy (targetting snowball).
+
+***Sunday, Oct. 1***
+- Added rooms 2 to 4.
+- Added victory screen with its options.
+- Lost a lot of work because of Visual Studio.
