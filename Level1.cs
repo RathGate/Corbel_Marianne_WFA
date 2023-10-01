@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +20,7 @@ namespace PICO
             GetAllControlsWithParameters("wall");
             ReorderControls();
             currentRoom = 1;
+            Bgm = new(GetBaseDirectory() + @"\bgm\level1.wav");
             UpdateSound(soundCtrl);
         }
         public Level1(int ticks, int deathCount, int berryCount)
@@ -31,6 +33,7 @@ namespace PICO
             GetAllControlsWithParameters("wall");
             ReorderControls();
             currentRoom = 1;
+            Bgm = new(GetBaseDirectory() + @"\bgm\level1.wav");
             UpdateSound(soundCtrl);
         }
 

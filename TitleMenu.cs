@@ -15,13 +15,14 @@ namespace PICO
 {
     public partial class TitleMenu : Base
     {
-        private readonly SoundPlayer launchSound = new(@"D:\System\Bureau\introductionjpp.wav");
+    private readonly SoundPlayer launchSound = new(GetBaseDirectory() + @"\bgm\launch.wav");
 
         public TitleMenu()
         {
-            Bgm = new(@"D:\System\Bureau\title.wav");
+            Bgm = new(GetBaseDirectory() + @"\bgm\level0.wav");
             InitializeComponent();
             UpdateSound(soundCtrl);
+            GetBaseDirectory();
         }
 
         private int currentAnimationFrame;

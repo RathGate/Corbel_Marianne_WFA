@@ -122,5 +122,15 @@ namespace PICO
             newWindow.Show();
             this.Close();
         }
+
+        protected static string GetBaseDirectory()
+        {
+            var directory = System.AppContext.BaseDirectory.Split(Path.DirectorySeparatorChar);
+            var slice = new ArraySegment<string>(directory, 0, directory.Length - 4);
+            var path = Path.Combine(slice.ToArray());
+
+            Debug.WriteLine($"Path of Program.cs is: {path}");
+            return path;
+        }
     }
 }

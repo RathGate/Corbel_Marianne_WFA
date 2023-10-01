@@ -18,7 +18,6 @@ namespace PICO
         public BaseLevel()
         {
             InitializeComponent();
-            Bgm = new SoundPlayer(@"D:\System\Bureau\level.wav");
             pauseOptions = new List<Panel>() { pauseOption0, pauseOption1 };
             this.Deaths = 0;
             this.Berries = 0;

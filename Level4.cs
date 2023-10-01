@@ -18,6 +18,7 @@ namespace PICO
             InitializeComponent();
             GetAllControlsWithParameters("wall");
             ReorderControls();
+            Bgm = new(GetBaseDirectory() + @"\bgm\level4.wav");
             UpdateSound(soundCtrl);
             currentRoom = 4;
             player.SetSpawnPoint(new Point(32, 416));
@@ -30,6 +31,7 @@ namespace PICO
             InitializeComponent();
             GetAllControlsWithParameters("wall");
             ReorderControls();
+            Bgm = new(GetBaseDirectory() + @"\bgm\level4.wav");
             UpdateSound(soundCtrl);
             currentRoom = 4;
             player.SetSpawnPoint(new Point(32, 416));
