@@ -26,8 +26,8 @@ namespace PICO
         public Level4(int ticks, int deathCount, int berryCount)
         {
             timerTicks = ticks;
-            Deaths = deathCount;
-            Berries = berryCount;
+            updateDeaths(deathCount);
+            updateBerries(berryCount);
             InitializeComponent();
             GetAllControlsWithParameters("wall");
             ReorderControls();

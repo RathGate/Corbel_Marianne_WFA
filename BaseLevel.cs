@@ -19,15 +19,14 @@ namespace PICO
         {
             InitializeComponent();
             pauseOptions = new List<Panel>() { pauseOption0, pauseOption1 };
-            this.Deaths = 0;
-            this.Berries = 0;
+            updateDeaths(0);
+            updateBerries(0);
             this.timerTicks = 0;
             HidePauseMenu();
         }
 
         // General
         private bool isPaused;
-
         private int _currentPauseOption = 0;
         private int currentPauseOption
         {
@@ -46,26 +45,23 @@ namespace PICO
         protected int timerTicks = 0;
 
         // Collectibles
-        private int _berries = 0;
-        private int _deaths = 0;
+        protected int gotBerries = 0;
+        protected int deaths = 0;
 
-        public int Berries
+        public void updateBerries(int newBerryCount=-1)
         {
-            get { return _berries; }
-            set
-            {
-                _berries = value;
-                berryCount.Text = value + " x";
-            }
+            gotBerries = newBerryCount >= 0 ? newBerryCount : gotBerries + 1;
+            berryCount.Text = gotBerries + " x";
         }
-        public int Deaths
+
+        public void updateDeaths(int newDeathCount=-1)
         {
-            get { return _deaths; }
-            set
+            deaths = newDeathCount >= 0 ? newDeathCount : deaths + 1;
+            if (deaths > 999)
             {
-                _deaths = value;
-                deathCount.Text = value + " x";
+                deaths = 999;
             }
+            deathCount.Text = deaths + " x";
         }
 
         private List<PictureBox> walls = new List<PictureBox>();
@@ -245,7 +241,7 @@ namespace PICO
             }
             else if (player.Bounds.IntersectsWith(snowball.Bounds))
             {
-                Deaths++;
+                updateDeaths();
                 player.Visible = false;
                 willRestart = true;
                 restartCountdown = 20;
@@ -256,7 +252,7 @@ namespace PICO
 
             if (player.Top > 512 - player.Height)
             {
-                Deaths++;
+                updateDeaths();
                 player.Visible = false;
                 willRestart = true;
                 restartCountdown = 20;
@@ -266,7 +262,7 @@ namespace PICO
                 return;
             } else if (player.Top < 0 && currentRoom != 4)
             {
-                OpenNextWindow(currentRoom + 1, timerTicks, Deaths, Berries);
+                OpenNextWindow(currentRoom + 1, timerTicks, deaths, gotBerries);
                 return;
             }
 
@@ -279,19 +275,19 @@ namespace PICO
 
                 if (player.Bounds.IntersectsWith(c.Bounds) && c.Tag as string == "golden" && currentRoom == 4)
                 {
-                    OpenNextWindow(currentRoom + 1, timerTicks, Deaths, Berries);
+                    OpenNextWindow(currentRoom + 1, timerTicks, deaths, gotBerries);
                 }
                 if (player.Bounds.IntersectsWith(c.Bounds) && c.Tag as string == "berry")
                 {
                     if (c.Visible)
                     {
-                        Berries++;
+                        updateBerries();
                         c.Visible = false;
                     }
                 }
                 if (player.Bounds.IntersectsWith(c.Bounds) && (c.Tag as string == "spikes"))
                 {
-                    Deaths++;
+                    updateDeaths();
                     player.Visible = false;
                     willRestart = true;
                     restartCountdown = 20;

@@ -177,15 +177,14 @@
             // 
             // deathCount
             // 
-            this.deathCount.AutoSize = true;
             this.deathCount.Font = new System.Drawing.Font("Early GameBoy", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.deathCount.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.deathCount.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.deathCount.Location = new System.Drawing.Point(401, 55);
+            this.deathCount.Location = new System.Drawing.Point(318, 55);
             this.deathCount.Margin = new System.Windows.Forms.Padding(0);
             this.deathCount.Name = "deathCount";
             this.deathCount.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
-            this.deathCount.Size = new System.Drawing.Size(65, 30);
+            this.deathCount.Size = new System.Drawing.Size(148, 30);
             this.deathCount.TabIndex = 82;
             this.deathCount.Text = "0 x";
             this.deathCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -210,15 +209,14 @@
             // 
             // berryCount
             // 
-            this.berryCount.AutoSize = true;
             this.berryCount.Font = new System.Drawing.Font("Early GameBoy", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.berryCount.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.berryCount.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.berryCount.Location = new System.Drawing.Point(401, 12);
+            this.berryCount.Location = new System.Drawing.Point(318, 12);
             this.berryCount.Margin = new System.Windows.Forms.Padding(0);
             this.berryCount.Name = "berryCount";
             this.berryCount.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
-            this.berryCount.Size = new System.Drawing.Size(65, 30);
+            this.berryCount.Size = new System.Drawing.Size(148, 30);
             this.berryCount.TabIndex = 20;
             this.berryCount.Text = "0 x";
             this.berryCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

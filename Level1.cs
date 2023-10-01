@@ -20,14 +20,16 @@ namespace PICO
             GetAllControlsWithParameters("wall");
             ReorderControls();
             currentRoom = 1;
+            updateDeaths(0);
+            updateBerries(0);
             Bgm = new(GetBaseDirectory() + @"\bgm\level1.wav");
             UpdateSound(soundCtrl);
         }
         public Level1(int ticks, int deathCount, int berryCount)
         {
             timerTicks = ticks;
-            Deaths = deathCount;
-            Berries = berryCount;
+            updateDeaths(deathCount);
+            updateBerries(berryCount);
             InitializeComponent();
             player.SetSpawnPoint(new Point(32, 384));
             GetAllControlsWithParameters("wall");
