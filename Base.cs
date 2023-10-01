@@ -5,8 +5,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Media;
+using System.Net.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +21,8 @@ namespace PICO
         protected bool SoundUp; 
         protected SoundPlayer Bgm = new();
         protected int currentRoom;
+        protected Font customFont;
+
         public Base()
         {
             InitializeComponent();

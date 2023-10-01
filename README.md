@@ -13,6 +13,8 @@ This project is being realised by Marianne Corbel as part of the "C# Introductio
 
  This program is a Windows Form Application, written entirely in C#.
 
+ **IMPORTANT**: This is an 8-bit game. You might want to install the font (in the folder ./Fonts) before using the program !
+
 As it is, the program **has not been compiled**. If you want to use it, you'll either have to compile it yourself or run a `dotnet run` command in the folder where `Program.cs` is located.
 
 
