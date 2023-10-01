@@ -103,6 +103,8 @@
             this.pictureBox71 = new System.Windows.Forms.PictureBox();
             this.pictureBox73 = new System.Windows.Forms.PictureBox();
             this.pictureBox74 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.soundCtrl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -178,6 +180,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox73)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox74)).BeginInit();
             this.SuspendLayout();
+            // 
+            // player
+            // 
+            this.player.Image = ((System.Drawing.Image)(resources.GetObject("player.Image")));
+            this.player.Location = new System.Drawing.Point(0, 420);
             // 
             // pictureBox1
             // 
@@ -1070,8 +1077,7 @@
             // 
             // Level4
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(512, 512);
             this.Controls.Add(this.pictureBox74);
             this.Controls.Add(this.pictureBox73);
@@ -1147,8 +1153,86 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
+            this.Deaths = 5;
             this.Name = "Level4";
             this.Text = "Level4";
+            this.Controls.SetChildIndex(this.pictureBox1, 0);
+            this.Controls.SetChildIndex(this.pictureBox2, 0);
+            this.Controls.SetChildIndex(this.pictureBox3, 0);
+            this.Controls.SetChildIndex(this.pictureBox4, 0);
+            this.Controls.SetChildIndex(this.pictureBox5, 0);
+            this.Controls.SetChildIndex(this.pictureBox6, 0);
+            this.Controls.SetChildIndex(this.pictureBox7, 0);
+            this.Controls.SetChildIndex(this.pictureBox8, 0);
+            this.Controls.SetChildIndex(this.pictureBox10, 0);
+            this.Controls.SetChildIndex(this.pictureBox12, 0);
+            this.Controls.SetChildIndex(this.pictureBox11, 0);
+            this.Controls.SetChildIndex(this.pictureBox14, 0);
+            this.Controls.SetChildIndex(this.pictureBox13, 0);
+            this.Controls.SetChildIndex(this.pictureBox18, 0);
+            this.Controls.SetChildIndex(this.pictureBox17, 0);
+            this.Controls.SetChildIndex(this.pictureBox16, 0);
+            this.Controls.SetChildIndex(this.pictureBox15, 0);
+            this.Controls.SetChildIndex(this.pictureBox19, 0);
+            this.Controls.SetChildIndex(this.pictureBox20, 0);
+            this.Controls.SetChildIndex(this.pictureBox21, 0);
+            this.Controls.SetChildIndex(this.pictureBox22, 0);
+            this.Controls.SetChildIndex(this.pictureBox24, 0);
+            this.Controls.SetChildIndex(this.pictureBox23, 0);
+            this.Controls.SetChildIndex(this.pictureBox25, 0);
+            this.Controls.SetChildIndex(this.pictureBox26, 0);
+            this.Controls.SetChildIndex(this.pictureBox27, 0);
+            this.Controls.SetChildIndex(this.pictureBox28, 0);
+            this.Controls.SetChildIndex(this.pictureBox29, 0);
+            this.Controls.SetChildIndex(this.pictureBox30, 0);
+            this.Controls.SetChildIndex(this.pictureBox31, 0);
+            this.Controls.SetChildIndex(this.pictureBox33, 0);
+            this.Controls.SetChildIndex(this.pictureBox32, 0);
+            this.Controls.SetChildIndex(this.pictureBox34, 0);
+            this.Controls.SetChildIndex(this.pictureBox36, 0);
+            this.Controls.SetChildIndex(this.pictureBox35, 0);
+            this.Controls.SetChildIndex(this.pictureBox38, 0);
+            this.Controls.SetChildIndex(this.pictureBox37, 0);
+            this.Controls.SetChildIndex(this.pictureBox39, 0);
+            this.Controls.SetChildIndex(this.pictureBox40, 0);
+            this.Controls.SetChildIndex(this.pictureBox41, 0);
+            this.Controls.SetChildIndex(this.pictureBox42, 0);
+            this.Controls.SetChildIndex(this.pictureBox43, 0);
+            this.Controls.SetChildIndex(this.pictureBox44, 0);
+            this.Controls.SetChildIndex(this.pictureBox45, 0);
+            this.Controls.SetChildIndex(this.pictureBox46, 0);
+            this.Controls.SetChildIndex(this.pictureBox47, 0);
+            this.Controls.SetChildIndex(this.pictureBox9, 0);
+            this.Controls.SetChildIndex(this.pictureBox72, 0);
+            this.Controls.SetChildIndex(this.pictureBox48, 0);
+            this.Controls.SetChildIndex(this.pictureBox49, 0);
+            this.Controls.SetChildIndex(this.pictureBox51, 0);
+            this.Controls.SetChildIndex(this.pictureBox50, 0);
+            this.Controls.SetChildIndex(this.pictureBox53, 0);
+            this.Controls.SetChildIndex(this.pictureBox52, 0);
+            this.Controls.SetChildIndex(this.pictureBox55, 0);
+            this.Controls.SetChildIndex(this.pictureBox54, 0);
+            this.Controls.SetChildIndex(this.pictureBox59, 0);
+            this.Controls.SetChildIndex(this.pictureBox58, 0);
+            this.Controls.SetChildIndex(this.pictureBox57, 0);
+            this.Controls.SetChildIndex(this.pictureBox56, 0);
+            this.Controls.SetChildIndex(this.pictureBox60, 0);
+            this.Controls.SetChildIndex(this.pictureBox61, 0);
+            this.Controls.SetChildIndex(this.pictureBox62, 0);
+            this.Controls.SetChildIndex(this.pictureBox63, 0);
+            this.Controls.SetChildIndex(this.pictureBox64, 0);
+            this.Controls.SetChildIndex(this.pictureBox65, 0);
+            this.Controls.SetChildIndex(this.pictureBox66, 0);
+            this.Controls.SetChildIndex(this.pictureBox67, 0);
+            this.Controls.SetChildIndex(this.pictureBox68, 0);
+            this.Controls.SetChildIndex(this.pictureBox69, 0);
+            this.Controls.SetChildIndex(this.pictureBox70, 0);
+            this.Controls.SetChildIndex(this.pictureBox71, 0);
+            this.Controls.SetChildIndex(this.pictureBox73, 0);
+            this.Controls.SetChildIndex(this.pictureBox74, 0);
+            this.Controls.SetChildIndex(this.player, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.soundCtrl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -1224,6 +1308,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox73)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox74)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

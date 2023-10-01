@@ -41,8 +41,7 @@
             // 
             // Base
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(512, 512);
             this.DoubleBuffered = true;

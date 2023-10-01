@@ -23,7 +23,13 @@ D:\System\Documents\Ynov\B2\C#\wfa\bin\Debug\net7.0-windows\PICO.runtimeconfig.j
 D:\System\Documents\Ynov\B2\C#\wfa\bin\Debug\net7.0-windows\PICO.dll
 D:\System\Documents\Ynov\B2\C#\wfa\bin\Debug\net7.0-windows\PICO.pdb
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.csproj.AssemblyReference.cache
+D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Level1.resources
+D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Level2.resources
+D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Level3.resources
+D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Level4.resources
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Properties.Resources.resources
+D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.TitleMenu.resources
+D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.VictoryScreen.resources
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.csproj.GenerateResource.cache
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.GeneratedMSBuildEditorConfig.editorconfig
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.AssemblyInfoInputs.cache
@@ -35,10 +41,4 @@ D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.pdb
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.genruntimeconfig.cache
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\ref\PICO.dll
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Base.resources
-D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.TitleMenu.resources
 D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.BaseLevel.resources
-D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Level1.resources
-D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Level2.resources
-D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Level4.resources
-D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.Level3.resources
-D:\System\Documents\Ynov\B2\C#\wfa\obj\Debug\net7.0-windows\PICO.VictoryScreen.resources

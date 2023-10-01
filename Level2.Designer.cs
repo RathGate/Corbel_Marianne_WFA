@@ -182,7 +182,7 @@
             // player
             // 
             this.player.Image = ((System.Drawing.Image)(resources.GetObject("player.Image")));
-            this.player.Location = new System.Drawing.Point(0, 35);
+            this.player.Location = new System.Drawing.Point(0, 483);
             // 
             // pictureBox72
             // 
@@ -1061,8 +1061,7 @@
             // 
             // Level2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::PICO.Properties.Resources.bg_1;
             this.Berries = 1;
             this.ClientSize = new System.Drawing.Size(512, 512);
@@ -1139,6 +1138,7 @@
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox44);
             this.Controls.Add(this.pictureBox12);
+            this.Deaths = 4;
             this.Name = "Level2";
             this.Text = "Level2";
             this.Controls.SetChildIndex(this.pictureBox12, 0);

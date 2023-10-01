@@ -241,10 +241,8 @@
             // 
             // BaseLevel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(512, 512);
-
             this.Controls.Add(this.snowball);
             this.Controls.Add(this.player);
             this.Controls.Add(this.pausePanel);

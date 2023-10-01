@@ -192,7 +192,7 @@
             // player
             // 
             this.player.Image = ((System.Drawing.Image)(resources.GetObject("player.Image")));
-            this.player.Location = new System.Drawing.Point(0, 448);
+            this.player.Location = new System.Drawing.Point(0, 392);
             this.player.Click += new System.EventHandler(this.player_Click);
             // 
             // pauseTimer
@@ -1196,8 +1196,7 @@
             // 
             // Level1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::PICO.Properties.Resources.bg_1;
             this.ClientSize = new System.Drawing.Size(512, 512);
             this.Controls.Add(this.pictureBox30);
@@ -1276,6 +1275,7 @@
             this.Controls.Add(this.pictureBox77);
             this.Controls.Add(this.pictureBox78);
             this.Controls.Add(this.pictureBox79);
+            this.Deaths = 2;
             this.Name = "Level1";
             this.Text = "Level1";
             this.Controls.SetChildIndex(this.player, 0);
