@@ -42,14 +42,15 @@
             // 
             // labelPressBtn
             // 
-            this.labelPressBtn.AutoSize = true;
             this.labelPressBtn.Font = new System.Drawing.Font("Early GameBoy", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelPressBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.labelPressBtn.Location = new System.Drawing.Point(171, 321);
+            this.labelPressBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelPressBtn.Location = new System.Drawing.Point(145, 321);
             this.labelPressBtn.Name = "labelPressBtn";
-            this.labelPressBtn.Size = new System.Drawing.Size(177, 20);
+            this.labelPressBtn.Size = new System.Drawing.Size(220, 20);
             this.labelPressBtn.TabIndex = 6;
             this.labelPressBtn.Text = "Press space";
+            this.labelPressBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelCtrls
             // 

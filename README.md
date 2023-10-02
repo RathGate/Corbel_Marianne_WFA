@@ -77,6 +77,8 @@ As it is, the program **has not been compiled**. If you want to use it, you'll e
 - Added moving enemy (targetting snowball).
 
 ***Sunday, Oct. 1***
-- Added rooms 2 to 4.
+- Added rooms 2 to 4. Because of technical limitations and not having any dash, a whole new screen has been made !
 - Added victory screen with its options.
 - Lost a lot of work because of Visual Studio.
+[Yeah I'm proud.](https://i.ibb.co/TWMkRtv/Capture-d-cran-2023-10-02-023136.png)
+

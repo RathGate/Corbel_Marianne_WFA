@@ -224,14 +224,14 @@
             // 
             // pausa
             // 
-            this.pausa.AutoSize = true;
             this.pausa.Font = new System.Drawing.Font("Early GameBoy", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.pausa.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.pausa.Location = new System.Drawing.Point(161, 157);
+            this.pausa.Location = new System.Drawing.Point(96, 157);
             this.pausa.Name = "pausa";
-            this.pausa.Size = new System.Drawing.Size(205, 47);
+            this.pausa.Size = new System.Drawing.Size(319, 47);
             this.pausa.TabIndex = 80;
             this.pausa.Text = "Pausa";
+            this.pausa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pauseTimer
             // 
@@ -253,7 +253,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.snowball)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             this.pausePanel.ResumeLayout(false);
-            this.pausePanel.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.pauseOption0.ResumeLayout(false);
             this.pauseOption0.PerformLayout();

@@ -423,7 +423,7 @@
             // 
             this.pictureBox23.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox23.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox23.Image")));
-            this.pictureBox23.Location = new System.Drawing.Point(32, 256);
+            this.pictureBox23.Location = new System.Drawing.Point(29, 256);
             this.pictureBox23.MinimumSize = new System.Drawing.Size(32, 32);
             this.pictureBox23.Name = "pictureBox23";
             this.pictureBox23.Size = new System.Drawing.Size(32, 32);
