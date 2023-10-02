@@ -127,6 +127,7 @@ namespace PICO
             this.Close();
         }
 
+        // Returns the directory where program.cs is situated.
         protected static string GetBaseDirectory()
         {
             var directory = System.AppContext.BaseDirectory.Split(Path.DirectorySeparatorChar);
