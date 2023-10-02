@@ -253,6 +253,7 @@
             this.soundCtrl.Size = new System.Drawing.Size(32, 32);
             this.soundCtrl.TabIndex = 8;
             this.soundCtrl.TabStop = false;
+            this.soundCtrl.Visible = false;
             // 
             // VictoryScreen
             // 

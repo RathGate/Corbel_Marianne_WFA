@@ -45,11 +45,11 @@
             this.labelPressBtn.AutoSize = true;
             this.labelPressBtn.Font = new System.Drawing.Font("Early GameBoy", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelPressBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.labelPressBtn.Location = new System.Drawing.Point(161, 321);
+            this.labelPressBtn.Location = new System.Drawing.Point(171, 321);
             this.labelPressBtn.Name = "labelPressBtn";
-            this.labelPressBtn.Size = new System.Drawing.Size(193, 20);
+            this.labelPressBtn.Size = new System.Drawing.Size(177, 20);
             this.labelPressBtn.TabIndex = 6;
-            this.labelPressBtn.Text = "Press button";
+            this.labelPressBtn.Text = "Press space";
             // 
             // labelCtrls
             // 
@@ -58,9 +58,9 @@
             this.labelCtrls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.labelCtrls.Location = new System.Drawing.Point(12, 472);
             this.labelCtrls.Name = "labelCtrls";
-            this.labelCtrls.Size = new System.Drawing.Size(204, 34);
+            this.labelCtrls.Size = new System.Drawing.Size(273, 34);
             this.labelCtrls.TabIndex = 5;
-            this.labelCtrls.Text = "Ctrls:\r\nzqsd, space, esc\r\n";
+            this.labelCtrls.Text = "Ctrls:\r\nzqsd, space, esc/enter";
             // 
             // logo
             // 
@@ -79,6 +79,7 @@
             this.soundCtrl.Size = new System.Drawing.Size(32, 32);
             this.soundCtrl.TabIndex = 7;
             this.soundCtrl.TabStop = false;
+            this.soundCtrl.Visible = false;
             this.soundCtrl.Click += new System.EventHandler(this.Sound_Click);
             // 
             // TitleMenu

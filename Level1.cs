@@ -17,7 +17,7 @@ namespace PICO
         {
             InitializeComponent();
             player.SetSpawnPoint(new Point(32, 384));
-            GetAllControlsWithParameters("wall");
+            UpdateWallList("wall");
             ReorderControls();
             currentRoom = 1;
             updateDeaths(0);
@@ -32,7 +32,7 @@ namespace PICO
             updateBerries(berryCount);
             InitializeComponent();
             player.SetSpawnPoint(new Point(32, 384));
-            GetAllControlsWithParameters("wall");
+            UpdateWallList("wall");
             ReorderControls();
             currentRoom = 1;
             Bgm = new(GetBaseDirectory() + @"\bgm\level1.wav");

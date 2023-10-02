@@ -15,6 +15,7 @@ namespace PICO
 {
     public partial class BaseLevel : Base
     {
+        #region Constructors
         public BaseLevel()
         {
             InitializeComponent();
@@ -24,8 +25,11 @@ namespace PICO
             this.timerTicks = 0;
             HidePauseMenu();
         }
+        #endregion
 
-        // General
+        #region Variables
+
+        // Pause variables
         private bool isPaused;
         private int _currentPauseOption = 0;
         private int currentPauseOption
@@ -111,36 +115,26 @@ namespace PICO
 
         private string[] menuOptions = { "", "Reset Pico-8" };
 
+        #endregion
 
-        public void GetAllControlsWithParameters(string cTag)
-        {
-            foreach (Control c in this.Controls)
-            {
-                if (c is not PictureBox)
-                {
-                    continue;
-                }
-
-                if (c.Tag as string == "wall")
-                {
-                    walls.Add((PictureBox)c);
-                }
-            }
-        }
+        #region Main Timer
 
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
+            // Game timer should stop as soon as pause timer has been triggered.
             if (isPaused)
             {
                 ShowPauseMenu();
                 return;
             }
 
+            // Updates timer
             timerTicks++;
             timeElapsed.Text = GetElapsedTime(timerTicks);
-            UpdateDirectionValues();
-            player.IsGrounded = isAgainstControl(Direction.Bottom, player);
 
+            // Triggers if a restart is planned.
+            // Necessary, as the player doesn't respawn the frame after
+            // having been killed.
             if (willRestart)
             {
                 if (restartCountdown > 0)
@@ -150,6 +144,7 @@ namespace PICO
                 }
                 else
                 {
+                    // Todo: refactor the killPlayer();
                     restartCountdown = 0;
                     willRestart = false;
                     player.Location = player.SpawnPoint;
@@ -161,6 +156,13 @@ namespace PICO
                 }
             }
 
+            // Updates player inputs
+            UpdateDirectionValues();
+
+            // Update Madeline's position relatively to the ground.
+            player.IsGrounded = isAgainstControl(Direction.Bottom, player);
+
+            // Movement animations.
             if (isIdle())
             {
                 player.Animate(0, 0, facingRight);
@@ -185,33 +187,36 @@ namespace PICO
                 player.Animate(0, 0, facingRight);
             }
 
+            // Default horizontal movement (no jump, no walljump)
             if (inputX != 0 && !isWallJumping)
             {
                 MoveInDirection(inputX > 0 ? Direction.Right : Direction.Left, 5);
             }
 
+            // Jump
             if (currentJumpFrame != 0)
             {
                 Jump();
             }
+            // Wall grab
             else if (inputX != 0 && !player.IsGrounded &&
                        isAgainstControl(inputX == 1 ? Direction.Right : Direction.Left, player))
             {
                 MoveInDirection(Direction.Bottom, (int)Math.Floor(jumpSpeed / 2));
                 player.Animate(6, 6, facingRight);
             }
+            // Gravity
             else
             {
                 MoveInDirection(Direction.Bottom, (int)Math.Ceiling(jumpSpeed));
             }
 
-
-
+            // Triggers the snowball launch.
             if (inputX != 0 && snowBallCooldown == -1 && currentRoom != 4)
             {
                 snowBallCooldown = 0;
             }
-
+            // Snowball movement.
             if (snowBallCooldown == 0)
             {
                 if (!snowBallHasBeenTriggered)
@@ -233,12 +238,13 @@ namespace PICO
             {
                 snowBallCooldown--;
             }
-
+            // Makes the player jump is grounded on a snowball.
             if (!player.IsGrounded && isAboveSnowball())
             {
                 currentJumpFrame = 1;
                 isWallJumping = false;
             }
+            // Kills the player if intersecting with snowball.
             else if (player.Bounds.IntersectsWith(snowball.Bounds))
             {
                 updateDeaths();
@@ -250,6 +256,7 @@ namespace PICO
                 snowball.Left = 513;
             }
 
+            // Kills the player if Madeline touches the lower bound of the screen.
             if (player.Top > 512 - player.Height)
             {
                 updateDeaths();
@@ -260,12 +267,14 @@ namespace PICO
                 snowBallCooldown = -1;
                 snowball.Left = 513;
                 return;
+            // Brings the player to next screen if Madeline touches the upper bound.
             } else if (player.Top < 0 && currentRoom != 4)
             {
                 OpenNextWindow(currentRoom + 1, timerTicks, deaths, gotBerries);
                 return;
             }
 
+            // Collision checks
             foreach (Control c in this.Controls)
             {
                 if (c is not PictureBox)
@@ -273,10 +282,12 @@ namespace PICO
                     continue;
                 }
 
+                // Golden berry on level 4 triggers the victory.
                 if (player.Bounds.IntersectsWith(c.Bounds) && c.Tag as string == "golden" && currentRoom == 4)
                 {
                     OpenNextWindow(currentRoom + 1, timerTicks, deaths, gotBerries);
                 }
+                // Collecting berries.
                 if (player.Bounds.IntersectsWith(c.Bounds) && c.Tag as string == "berry")
                 {
                     if (c.Visible)
@@ -285,6 +296,7 @@ namespace PICO
                         c.Visible = false;
                     }
                 }
+                // Kills the player if interaction with spikes.
                 if (player.Bounds.IntersectsWith(c.Bounds) && (c.Tag as string == "spikes"))
                 {
                     updateDeaths();
@@ -299,6 +311,13 @@ namespace PICO
 
         }
 
+
+
+        #endregion
+
+        #region Key Binds
+
+        // Registers the inputs being pressed.
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Q || e.KeyCode == Keys.Left)
@@ -351,8 +370,7 @@ namespace PICO
             }
         }
 
-
-
+        // Registers the inputs being released.
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Q || e.KeyCode == Keys.Left)
@@ -384,9 +402,203 @@ namespace PICO
             }
         }
 
+        // User inputs class.
+        public class UserInputs
+        {
+            public bool Up;
+            public bool Down;
+            public bool Left;
+            public bool Right;
+            public bool Dash;
+            public bool Jump;
+
+            public UserInputs()
+            {
+                Up = Down = Left = Right = Dash = Jump = false;
+            }
+        }
+
+        // The interest of having a UserInputs and a function to process the
+        // inputs is to avoid colliding inputs making Madeline do weird things, 
+        // such as flying if up and down are pressed together for a long time.
+        public void UpdateDirectionValues()
+        {
+            inputY = userInputs.Down ? 1 : userInputs.Up ? -1 : 0;
+            inputX = userInputs.Right ? 1 : userInputs.Left ? -1 : 0;
+            facingRight = inputX == -1 ? 0 : inputX == 1 ? 1 : facingRight;
+        }
+
+        // Returns true if the player doesn't register any directional input.
+        private bool isIdle()
+        {
+            return inputX == 0 && inputY == 0;
+        }
+
+        #endregion
 
 
+        #region Controls and Collisions Functions
 
+        public void UpdateWallList(string cTag)
+        {
+            foreach (Control c in this.Controls)
+            {
+                if (c is not PictureBox)
+                {
+                    continue;
+                }
+
+                if (c.Tag as string == "wall")
+                {
+                    walls.Add((PictureBox)c);
+                }
+            }
+        }
+
+        // Checks if a source has a specific side intersecting with a target.
+        private static bool HasSideIntersecting(Direction direction, Rectangle source, Rectangle target)
+        {
+            if (!source.IntersectsWith(target))
+            {
+                return false;
+            }
+            if (direction == Direction.Top)
+            {
+                return source.Top >= target.Top && source.Top <= target.Bottom + 1;
+            }
+
+            if (direction == Direction.Left)
+            {
+                return source.Left >= target.Left && source.Left <= target.Right + 1;
+            }
+
+            if (direction == Direction.Right)
+            {
+                return source.Right >= target.Left - 1 && source.Right <= target.Right;
+            }
+
+            return source.Bottom >= target.Top - 1 && source.Bottom <= target.Bottom;
+        }
+
+        // Checks if a source has a specific side intersecting with any PictureBox 
+        // with the specified tag.
+        private bool HasSideIntersectingWithAny(Direction direction, Rectangle source, string tag = "wall")
+        {
+            foreach (Control c in Controls)
+            {
+                if (c is not PictureBox || c.Tag as string != tag)
+                {
+                    continue;
+                }
+
+                if (HasSideIntersecting(direction, source, c.Bounds))
+                {
+
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Returns true if the source is against (not colliding) with any PictureBox with the 
+        // specified tag.
+        private bool isAgainstControl(Direction direction, PictureBox source)
+        {
+            Rectangle temp = new Rectangle(player.Location, player.Size);
+            switch (direction)
+            {
+                case Direction.Top:
+                    temp.Y -= 1;
+                    break;
+                case Direction.Left:
+                    temp.X -= 1;
+                    break;
+                case Direction.Right:
+                    temp.X += 1;
+                    break;
+                default:
+                    temp.Y += 1;
+                    break;
+            }
+            return HasSideIntersectingWithAny(direction, temp);
+        }
+
+        #endregion
+
+        #region Player
+
+        // Player class and its animation methods.
+        public class Player : PictureBox
+        {
+            public Point DefaultLocation, SpawnPoint;
+            public bool IsLocked = true;
+
+            protected int WalkingAnimationFrameRate = 4;
+            protected int CurrentSlowDownFrame = 0;
+            protected int CurrentAnimationStep = 0;
+
+            public bool IsGrounded;
+
+            public Player()
+            {
+                BackColor = System.Drawing.Color.Transparent;
+                Image = Resources.maddy_4;
+                TabStop = false;
+
+                DefaultLocation = new Point(32, 512);
+                //SpawnPoint = new Point(32, 384);
+                Location = SpawnPoint;
+                TabIndex = 1;
+                MinimumSize = new System.Drawing.Size(32, 32);
+                Size = new System.Drawing.Size(32, 32);
+
+                Name = "player";
+                Tag = "player";
+            }
+
+            public void SetSpawnPoint(Point Point)
+            {
+                Location = Point;
+                SpawnPoint = Point;
+            }
+
+            public void SwitchAnimation(string resourceName)
+            {
+                if (Resources.ResourceManager.GetObject(resourceName) is not Image img || this.Image == img)
+                {
+                    return;
+                }
+                this.Image = img;
+            }
+
+            public void Animate(int start, int end, int lookingLeft)
+            {
+                // Multi frame animation is walking
+                if (end > start)
+                {
+                    CurrentSlowDownFrame += 1;
+                    if (CurrentSlowDownFrame == WalkingAnimationFrameRate)
+                    {
+                        CurrentAnimationStep++;
+                        CurrentSlowDownFrame = 0;
+                    }
+
+                    if (CurrentAnimationStep > end || CurrentAnimationStep < start)
+                    {
+                        CurrentAnimationStep = start;
+                    }
+                }
+                else
+                {
+                    CurrentAnimationStep = start;
+                }
+
+                SwitchAnimation($"maddy_{CurrentAnimationStep + (lookingLeft * 7)}");
+            }
+        };
+
+        
+        // That one is dirty.
         private void MoveInDirection(Direction direction, int distance)
         {
             Rectangle theoreticalBounds;
@@ -468,149 +680,11 @@ namespace PICO
 
         }
 
-        private bool isIdle()
-        {
-            return inputX == 0 && inputY == 0;
-        }
 
-        private static bool HasSideIntersecting(Direction direction, Rectangle source, Rectangle target)
-        {
-            if (!source.IntersectsWith(target))
-            {
-                return false;
-            }
-            if (direction == Direction.Top)
-            {
-                return source.Top >= target.Top && source.Top <= target.Bottom + 1;
-            }
-
-            if (direction == Direction.Left)
-            {
-                return source.Left >= target.Left && source.Left <= target.Right + 1;
-            }
-
-            if (direction == Direction.Right)
-            {
-                return source.Right >= target.Left - 1 && source.Right <= target.Right;
-            }
-
-            return source.Bottom >= target.Top - 1 && source.Bottom <= target.Bottom;
-        }
-
-        private bool HasSideIntersectingWithAny(Direction direction, Rectangle source, string tag = "wall")
-        {
-            foreach (Control c in Controls)
-            {
-                if (c is not PictureBox || c.Tag as string != tag)
-                {
-                    continue;
-                }
-
-                if (HasSideIntersecting(direction, source, c.Bounds))
-                {
-
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public class UserInputs
-        {
-            public bool Up;
-            public bool Down;
-            public bool Left;
-            public bool Right;
-            public bool Dash;
-            public bool Jump;
-            public bool isLocked;
-
-            public UserInputs()
-            {
-                Up = Down = Left = Right = Dash = Jump = false;
-            }
-
-        }
-
-        public class Player : PictureBox
-        {
-            public Point DefaultLocation, SpawnPoint;
-            public bool IsLocked = true;
-
-            protected int WalkingAnimationFrameRate = 4;
-            protected int CurrentSlowDownFrame = 0;
-            protected int CurrentAnimationStep = 0;
-
-            public bool IsGrounded;
+        
 
 
 
-
-            public Player()
-            {
-                BackColor = System.Drawing.Color.Transparent;
-                Image = Resources.maddy_4;
-                TabStop = false;
-
-                DefaultLocation = new Point(32, 512);
-                //SpawnPoint = new Point(32, 384);
-                Location = SpawnPoint;
-                TabIndex = 1;
-                MinimumSize = new System.Drawing.Size(32, 32);
-                Size = new System.Drawing.Size(32, 32);
-
-                Name = "player";
-                Tag = "player";
-            }
-
-            public void SetSpawnPoint(Point Point)
-            {
-                Location = Point;
-                SpawnPoint = Point;
-            }
-
-            public void SwitchAnimation(string resourceName)
-            {
-                if (Resources.ResourceManager.GetObject(resourceName) is not Image img || this.Image == img)
-                {
-                    return;
-                }
-                this.Image = img;
-            }
-
-            public void Animate(int start, int end, int lookingLeft)
-            {
-                // Multi frame animation is walking
-                if (end > start)
-                {
-                    CurrentSlowDownFrame += 1;
-                    if (CurrentSlowDownFrame == WalkingAnimationFrameRate)
-                    {
-                        CurrentAnimationStep++;
-                        CurrentSlowDownFrame = 0;
-                    }
-
-                    if (CurrentAnimationStep > end || CurrentAnimationStep < start)
-                    {
-                        CurrentAnimationStep = start;
-                    }
-                }
-                else
-                {
-                    CurrentAnimationStep = start;
-                }
-
-                SwitchAnimation($"maddy_{CurrentAnimationStep + (lookingLeft * 7)}");
-            }
-        };
-
-
-        public void UpdateDirectionValues()
-        {
-            inputY = userInputs.Down ? 1 : userInputs.Up ? -1 : 0;
-            inputX = userInputs.Right ? 1 : userInputs.Left ? -1 : 0;
-            facingRight = inputX == -1 ? 0 : inputX == 1 ? 1 : facingRight;
-        }
 
         public void Jump()
         {
@@ -665,28 +739,12 @@ namespace PICO
             return (!player.Bounds.IntersectsWith(snowball.Bounds) && temp.IntersectsWith(snowball.Bounds));
 
         }
-        private bool isAgainstControl(Direction direction, PictureBox source)
-        {
-            Rectangle temp = new Rectangle(player.Location, player.Size);
-            switch (direction)
-            {
-                case Direction.Top:
-                    temp.Y -= 1;
-                    break;
-                case Direction.Left:
-                    temp.X -= 1;
-                    break;
-                case Direction.Right:
-                    temp.X += 1;
-                    break;
-                default:
-                    temp.Y += 1;
-                    break;
-            }
 
-            return HasSideIntersectingWithAny(direction, temp);
-        }
+        #endregion
 
+        #region Pause
+
+        // Pause menu timer.
         private void pauseTimer_Tick(object sender, EventArgs e)
         {
             if (!isPaused)
@@ -712,6 +770,7 @@ namespace PICO
             }
         }
 
+        // Switches the color for the active pause options.
         private void UpdatePauseOption()
         {
             for (int i = 0; i < pauseOptions.Count; i++)
@@ -731,7 +790,6 @@ namespace PICO
             mainTimer.Stop();
             pauseTimer.Start();
         }
-
         private void HidePauseMenu()
         {
             pausePanel.Visible = false;
@@ -741,21 +799,9 @@ namespace PICO
             UpdatePauseOption();
         }
 
-        private void berryCount_TextChanged(object sender, EventArgs e)
-        {
-            berryCount.Location = new Point(468 - berryCount.Width, berryCount.Top);
-        }
+        #endregion
 
-        private void deathCount_TextChanged(object sender, EventArgs e)
-        {
-            deathCount.Location = new Point(468 - deathCount.Width, deathCount.Top);
-        }
-
-        private void pausa_TextChanged(object sender, EventArgs e)
-        {
-            pausa.Location = new Point(110, pausa.Top);
-        }
-
+        #region Miscellaneous
         protected void ReorderControls()
         {
             foreach (Control c in Controls)
@@ -766,5 +812,6 @@ namespace PICO
                 }
             }
         }
+        #endregion
     }
 }

@@ -16,7 +16,7 @@ namespace PICO
         public Level4()
         {
             InitializeComponent();
-            GetAllControlsWithParameters("wall");
+            UpdateWallList("wall");
             ReorderControls();
             Bgm = new(GetBaseDirectory() + @"\bgm\level4.wav");
             UpdateSound(soundCtrl);
@@ -29,7 +29,7 @@ namespace PICO
             updateDeaths(deathCount);
             updateBerries(berryCount);
             InitializeComponent();
-            GetAllControlsWithParameters("wall");
+            UpdateWallList("wall");
             ReorderControls();
             Bgm = new(GetBaseDirectory() + @"\bgm\level4.wav");
             UpdateSound(soundCtrl);
